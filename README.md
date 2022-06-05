@@ -1,6 +1,9 @@
 # ECO CRAFTING
 ## FiveM QBCore Crafting script
 
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting1.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
+
 ## Jellemzők / Features
 
 - Keresés a receptek közt

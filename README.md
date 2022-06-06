@@ -5,10 +5,9 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting2.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
 
-## Jellemzők / Features
-
-- Keresés a receptek közt
-- Könnyen átlátható egymásra épülő, több lépcsős receptek 
+## Jellemzők
+- Keresés a receptek között
+- Könnyen átlátható, egymásra épülő, több lépcsős receptek 
 - Receptkönyv
 
 - Munkapont rendszer. A termékek gyártása munkapontba kerül
@@ -26,7 +25,7 @@
 
 - Target rendszer / hagyományos közelség érzékelés választható
 - Többnyelvűség támogatás (hu, en)
-
+- Discordon vezetett eseménynapló
 
 ### Működés:
 A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és megfelelő szakmai jártassági szinttel. 
@@ -135,7 +134,6 @@ Config.craftData = {
 ```
 
 ### Excluding, kizárás beállítás
-
 - karakterlánc felsorolást fogad el vegyesen szakmák(job) és csoportok(gang), nincsenek a rangok figyelembe véve.
 - a felsorolt szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 ```lua
@@ -235,6 +233,7 @@ Az aktuális inventory ikonjait használja. A konfigurációs fájlban lehet meg
 ```lua
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
 ```
+
 ### Server exports
 Külső szkriptekből lekérdezhetők, befolyásolhatók a munkapont és jártasság értékek
 ```lua
@@ -254,15 +253,13 @@ exports['eco_crafting']:getProficiency((xPlayer or serverId))
 - start eco_crafting
 - adatbázist nem igényel (meta adatokat használ)
 
-
 ### Target működése:
-
 **qb-target bekapcsolása:**
 ```lua
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Átveszi a szerver konfigurációs fájl értékét 
 ```
 1. Amennyiben a munkahelyhez objektum is van rendelve, akkor ahhoz hozzárendeli a polyBoxot.
-2. Ha nincs objektum, akkor a munkahely koordinátájától 1 méteres körzetben keres egyet és ha lehetséges
+2. Ha nincs objektum, akkor a munkahely koordinátájától 1 méteres körzetben keresést folytat és ha lehetséges
 ráhelyezi a polyZonát. 
 3. Ha nem talál, létrehoz egy adott méretű polyBox-ot a koordináta körül. 
 
@@ -272,18 +269,15 @@ Config.debugPoly = true
 ```
 
 ### Mellékelt hasznos tárgyak
-
 Lásd a QBCore_addition mappa tartalmát. Ikonok és leírás mellékelve!
-Működésükhöz a **/qb-core/shared/items.lua** fájlba létre kell hozni a tárgyakat.
+Működésükhöz a **/qb-core/shared/items.lua** fájlban létre kell hozni a tárgyakat.
 Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
 
 - Receptkönyv (recipe_collection)
 - Munkapont növelő +1000 pont (labor_enhancer)
-- Jártasság növelő +1000 pont (weaponry_enhancer) -- ez csak egy példa
+- Jártasság növelő +1000 pont (weaponry_enhancer) -- példa(nem ajánlott)
 
 A **server/usableitem.lua** fájlban bevezetésre kerültek mintaként.
 
-
 ### License
 
-   

@@ -27,7 +27,7 @@
 - Multilanguage (hu, en)
 - Discord log included
 
-### How does it work?:
+### How does it work?
 In order to craft an item you will need ingredients, labor points and the neccesary proficiency level.
 Every profession has its own workstand/workstands.
 The recipes are categorized as professions. Eg.:
@@ -134,7 +134,7 @@ Config.craftData = {
  }
 ```
 
-### Excluding, 
+### Excluding 
 - only in string! profesions(job) and groups(gang), ranks are not needed here.
 - The listed professions and gangs won't be able to see the recipes in the recipe book.
 ```lua
@@ -224,7 +224,7 @@ Config.blips = {
 }
 ```
 
-### Needed extensions
+### Needed extensions, dependencies
  - **The script only uses QBCore 1.1 standard packages, no additional downloads needed**
  - DrawText (standard from qb-core 1.1)
  - qb-target + PolyZone (optional standard)

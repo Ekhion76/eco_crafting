@@ -5,7 +5,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
 
-## Features
+### Features
 - Search in recipes
 - Easy to understand, recipes are built on eachother, you can go step by step
 - Recipe book
@@ -27,7 +27,7 @@
 - Multilanguage (hu, en)
 - Discord log included
 
-### How does it work?
+## How does it work?
 In order to craft an item you will need ingredients, labor points and the neccesary proficiency level.
 Every profession has its own workstand/workstands.
 The recipes are categorized as professions. Eg.:
@@ -97,19 +97,37 @@ Config.craftData = {
 ### Recipe structure
 ```lua
 Config.craftData = {
-    exhaust = { -- Item what you can create
-        labor = 5, -- labor point
-        ingredients = { steel = 5 }, -- ingredients = db
-        time = 3,   -- needed time to create the item
-        amount = 5, -- ammount of items you will get 
-        proficiency = 3000, -- min proficiency level needed
-        price = 0, -- price to craft
-        exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
-        excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
-        special = 'vehicleParts' -- items can be crafted on a special workplace (optional)
+    foundry = {
+        aluminum = { -- Basic recipe. Yes, that's all, the rest of the default gets value! 
+            ingredients = { aluminumoxide = 3 } -- required
+        },
+        steel = { -- item what you can create
+            labor = 5, -- labor point (optional)
+            ingredients = { iron = 5 }, -- ingredients = piece !required
+            time = 3,   -- needed time to create the item (optional)
+            amount = 2, -- ammount of items you will get (optional)
+            proficiency = 3000, -- min proficiency level needed (optional)
+            price = 0, -- price to craft (optional)
+            exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
+            excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
+            special = 'vehicleParts' -- items can be crafted on a special workplace (optional)
+        }
     }
 }
 ```
+
+Default recipe values:
+
+    labor = 0
+    time = 10
+    price = 0
+    amount = 1
+    proficiency = 0
+    special = nil
+    exclusive = nil
+    excluding = nil
+ 
+
 
 ### Exclusive settings
 - profession(job) and group (gang) you can add all as list
@@ -120,15 +138,17 @@ Config.craftData = {
 
 ```lua
 Config.craftData = {
-     exhaust = {
-         -- ...
-         -- ...
-         -- ...
-         -- ...
-         exclusive = {
-             mechanic = { 0, 1 }, -- rank list (optional)
-             vagos = {}, -- all ranks accepted
-             'crips', -- all ranks accepted
+    foundry = { 
+         steel = {
+             -- ...
+             -- ...
+             -- ...
+             -- ...
+             exclusive = {
+                 mechanic = { 0, 1 }, -- rank list (optional)
+                 vagos = {}, -- all ranks accepted
+                 'crips', -- all ranks accepted
+             }
          }
      }
  }
@@ -139,19 +159,21 @@ Config.craftData = {
 - The listed professions and gangs won't be able to see the recipes in the recipe book.
 ```lua
 Config.craftData = {
-     exhaust = {
-         -- ...
-         -- ...
-         -- ...
-         -- ...
-         excluding = {
-             'mechanic', 'vagos', 'crips',
+    foundry = { 
+         steel = {
+             -- ...
+             -- ...
+             -- ...
+             -- ...
+             excluding = {
+                 'mechanic', 'vagos', 'crips',
+             }
          }
      }
  }
 ```
 
-## Workstands
+### Workstands
 Workstands like recipes can be exclusive for different jobs/gangs.
 You can create as much workstands as you like. Every profession has its own workstand/workstands.
 For every workstand you can define an own marker, animation, object, spcialization and owner.
@@ -278,5 +300,3 @@ Copy the icons to the inventory folder **qb-inventory/html/images/**
 - Proficiency point increase +1000 point (weaponry_enhancer) 
 
 They are introduced in the **server/usableitem.lua** file as an example.
-
-### License

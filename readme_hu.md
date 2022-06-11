@@ -5,7 +5,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting2.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
 
-## Jellemzők
+### Jellemzők
 - Keresés a receptek között
 - Könnyen átlátható, egymásra épülő, több lépcsős receptek 
 - Receptkönyv
@@ -27,7 +27,7 @@
 - Többnyelvűség támogatás (hu, en)
 - Discordon vezetett eseménynapló
 
-### Működés:
+## Működés:
 A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és megfelelő szakmai jártassági szinttel. 
 Minden szakmának saját munkahelye / munkahelyei vannak.
 A receptek szakmák szerint vannak kategorizálva. Pl.:
@@ -96,19 +96,41 @@ Config.craftData = {
 ### Recept felépítése
 ```lua
 Config.craftData = {
-    exhaust = { -- elkészítendő tárgy
-        labor = 5, -- munkapont
-        ingredients = { steel = 5 }, -- hozzávalók = db
-        time = 3,   -- elkészítési idő másodpercben
-        amount = 5, -- kapott késztermék mennyisége
-        proficiency = 3000, -- minimum szakmai jártasság
-        price = 0, -- bekerülési összeg
-        exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
-        excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
-        special = 'vehicleParts' -- specializált munkahelyen gyártható (opcionális)
+    foundry = { 
+    
+        -- Alap recept. Igen, ennyi az egész. A többi alap értéket kap! 
+    
+        aluminum = { -- elkészítendő tárgy
+            ingredients = { aluminumoxide = 3 } -- Csak ez szükséges
+        },
+        
+        -- Teljesen opcionalizált recept
+        
+        steel = {
+            labor = 5, -- munkapont (opcionális)
+            ingredients = { steel = 5 }, -- hozzávalók = db !szükséges
+            time = 3,   -- elkészítési idő másodpercben (opcionális)
+            amount = 1, -- kapott késztermék mennyisége (opcionális)
+            proficiency = 3000, -- minimum szakmai jártasság (opcionális)
+            price = 0, -- bekerülési összeg (opcionális)
+            exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
+            excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
+            special = 'vehicleParts' -- specializált munkahelyen gyártható (opcionális)
+        }
     }
 }
 ```
+
+Alapértelmezett recept értékek:
+
+    labor = 0
+    time = 10
+    price = 0
+    amount = 1
+    proficiency = 0
+    special = nil
+    exclusive = nil
+    excluding = nil
 
 ### Exkluzív beállítás
 - foglalkozás(job) és csoport(gang) ömlesztve megadható
@@ -119,15 +141,17 @@ Config.craftData = {
 
 ```lua
 Config.craftData = {
-     exhaust = {
-         -- ...
-         -- ...
-         -- ...
-         -- ...
-         exclusive = {
-             mechanic = { 0, 1 }, -- rang lista (opcionális)
-             vagos = {}, -- minden rang elfogadva
-             'crips', -- minden rang elfogadva
+    foundry = { 
+         steel = {
+             -- ...
+             -- ...
+             -- ...
+             -- ...
+             exclusive = {
+                 mechanic = { 0, 1 }, -- rang lista (opcionális)
+                 vagos = {}, -- minden rang elfogadva
+                 'crips', -- minden rang elfogadva
+             }
          }
      }
  }
@@ -138,19 +162,21 @@ Config.craftData = {
 - a felsorolt szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 ```lua
 Config.craftData = {
-     exhaust = {
-         -- ...
-         -- ...
-         -- ...
-         -- ...
-         excluding = {
-             'mechanic', 'vagos', 'crips',
+    foundry = { 
+         steel = {
+             -- ...
+             -- ...
+             -- ...
+             -- ...
+             excluding = {
+                 'mechanic', 'vagos', 'crips',
+             } 
          }
      }
  }
 ```
 
-## Munkahelyek
+### Munkahelyek
 A receptekhez hasonlóan a munkahelyeket is lehet exkluzívvá vagy csoportok számára kizárttá tenni.
 A munkahelyek tetszőleges számban létrehozhatók. Minden szakmának saját munkahelye / munkahelyei vannak.
 Mindegyikhez saját markert, animációt, objektumot, specializációt és tulajdonost lehet meghatározni.
@@ -278,6 +304,4 @@ Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
 - Jártasság növelő +1000 pont (weaponry_enhancer) -- példa(nem ajánlott)
 
 A **server/usableitem.lua** fájlban bevezetésre kerültek mintaként.
-
-### License
 

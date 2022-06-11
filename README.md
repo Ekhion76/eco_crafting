@@ -98,9 +98,15 @@ Config.craftData = {
 ```lua
 Config.craftData = {
     foundry = {
-        aluminum = { -- Basic recipe. Yes, that's all, the rest of the default gets value! 
+    
+        -- Basic recipe. Yes, that's all, the rest of the default gets value!
+        
+        aluminum = { 
             ingredients = { aluminumoxide = 3 } -- required
         },
+        
+        -- Fully optimized recipe
+        
         steel = { -- item what you can create
             labor = 5, -- labor point (optional)
             ingredients = { iron = 5 }, -- ingredients = piece !required

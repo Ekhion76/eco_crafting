@@ -101,13 +101,13 @@ Config.craftData = {
     
         -- Basic recipe. Yes, that's all, the rest of the default gets value!
         
-        aluminum = { 
+        aluminum = { -- item what you can create
             ingredients = { aluminumoxide = 3 } -- required
         },
         
         -- Fully optimized recipe
         
-        steel = { -- item what you can create
+        steel = { 
             labor = 5, -- labor point (optional)
             ingredients = { iron = 5 }, -- ingredients = piece !required
             time = 3,   -- needed time to create the item (optional)

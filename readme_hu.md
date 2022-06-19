@@ -33,10 +33,8 @@
 ## Működés:
 Alap működés beállítások:
 
-Amennyiben nem szeretnél jártasság, munkapont rendszert bevezetni, akkor kikapcsolhatod ezeket.
-Lehetőség van a recept árak kikapcsolására is.
-
-Ha a munkapont rendszert kikapcsolod, automatikusan kikapcsolódik a jártasság rendszer is!
+Lehetőség van a recept árak, jártasság, munkapont rendszert kikapcsolni egyenként, ha ezekere nincs szükség.
+Ha a munkapont rendszer ki van kapcsolva, akkor automatikusan kikapcsolódik a jártasság rendszer is!
 
 ```lua
 Config.systemMode = {

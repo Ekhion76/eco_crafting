@@ -6,29 +6,50 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
 
 ### Jellemzők
-- Keresés a receptek között
-- Könnyen átlátható, egymásra épülő, több lépcsős receptek 
-- Receptkönyv
+- Receptek
+    - Keresés a receptek között
+    - Könnyen átlátható, egymásra épülő, több lépcsős receptek 
+    - Testreszabhatóság, foglalkozás(ok)tól függő használhatóság vagy tiltás, speciális munkahelyhez kötés
+    - Beárazható, a termékek gyártása pénzbe is kerülhet.
+    - Receptkönyv
 
-- Munkapont rendszer. A termékek gyártása munkapontba kerül
-- Az elhasznált munkapont az adott szakmában növeli a jártasságot
-- Munkapont növelő tárgy (adható akár esemény jutalomként vagy vásárolhatóvá tehető)
+- Munkapont rendszer (kapcsolható)
+    - A termékek gyártása munkapontba kerül
+    - Az elhasznált munkapont az adott szakmában növeli a jártasságot
+    - Munkapont növelő tárgy (adható akár esemény jutalomként vagy vásárolhatóvá tehető)
 
-- Jártasság rendszer
-- Jártasság statisztika oldal
-- Jártasság növelő tárgy (adható akár eseményeken jutalomként, vagy felkutatni eldugott helyeken)
+- Jártasság rendszer (kapcsolható)
+    - Jártasság statisztika oldal
+    - Jártasság növelő tárgy (adható akár eseményeken jutalomként, vagy felkutatható eldugott helyeken)
 
 - Mozgatható grafikus felület
-- Receptek testreszabhatósága (foglalkozás(ok)tól függő használhatóság vagy tiltás, speciális munkahelyhez köthető)
-- Munkahely specializálható, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthető
+- A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
 - Effekt markerek(cp), animációk, asztalok(objektumok), minden munkahelyhez egyedileg állíthatók
 
 - Target rendszer / hagyományos közelség érzékelés választható
-- Többnyelvűség támogatás (hu, en)
+- Többnyelvűség támogatás
 - Discordon vezetett eseménynapló
 
 ## Működés:
-A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és megfelelő szakmai jártassági szinttel. 
+Alap működés beállítások:
+
+Amennyiben nem szeretnél jártasság, munkapont rendszert bevezetni, akkor kikapcsolhatod ezeket.
+Lehetőség van a recept árak kikapcsolására is.
+
+Ha a munkapont rendszert kikapcsolod, automatikusan kikapcsolódik a jártasság rendszer is!
+
+```lua
+Config.systemMode = {
+    profession = true, -- jártasság rendszer
+    labor = true, -- Ha ezt kikapcsolod automatikusan kikapcsolódik a jártasság rendszer is!
+    money = true -- Recept árainak figyelembevétele
+}
+```
+
+A további leírás feltételezi, hogy minden rendszer be van kapcsolva.
+
+A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és 
+megfelelő szakmai jártassági szinttel (Amennyiben ezek be vannak kapcsolva). 
 Minden szakmának saját munkahelye / munkahelyei vannak.
 A receptek szakmák szerint vannak kategorizálva. Pl.:
 - chemist

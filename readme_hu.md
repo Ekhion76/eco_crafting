@@ -217,7 +217,7 @@ A munkahelyek tetszőleges számban létrehozhatók. Minden szakmának saját mu
 Mindegyikhez saját markert, animációt, objektumot, specializációt és tulajdonost lehet meghatározni.
 A specializált munkahelyeken minden olyan terméket is le lehet gyártani, ami nincs specializálva.
 
-###Mit jelent a specializáció?
+####Mit jelent a specializáció?
 A receptet hozzá lehet kötni akár egy munkahelyhez is.
 
 Például, vegyük alapul a vegyész szakmát. Receptjei közt megtalálhatók a legális és illegális szerek is.

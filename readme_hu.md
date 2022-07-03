@@ -31,10 +31,13 @@
 - Discordon vezetett eseménynapló
 
 ## Működés:
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/interactions.jpg)
 Alap működés beállítások:
 
 Lehetőség van a recept árak, jártasság, munkapont rendszert kikapcsolni egyenként, ha ezekere nincs szükség.
 Ha a munkapont rendszer ki van kapcsolva, akkor automatikusan kikapcsolódik a jártasság rendszer is!
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/functionality.jpg)
 
 ```lua
 Config.systemMode = {
@@ -46,17 +49,27 @@ Config.systemMode = {
 
 A további leírás feltételezi, hogy minden rendszer be van kapcsolva.
 
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/labor_points.jpg)
+
 A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és 
-megfelelő szakmai jártassági szinttel (Amennyiben ezek be vannak kapcsolva). 
+megfelelő szakmai jártassági szinttel. 
 Minden szakmának saját munkahelye / munkahelyei vannak.
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
+
 A receptek szakmák szerint vannak kategorizálva. Pl.:
 - chemist
 - cooking
 - weaponry
 - foundry
-- handicraft(mechanic)
- 
+- handicraft
+- ...
+- ...
+
 Az elhasznált labor az adott szakmában növeli a jártasságot, így egyre magasabb szintű tárgyak készíthetők.
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
+
 Nem érdemes például étterem1 és étterem2 alá sorolni a recepteket, mert az két külön szakmát jelentene, 
 holott a szakács jártasságot kellene növelniük a befektetett munkapontoknak egységesen.
 
@@ -113,6 +126,8 @@ Config.craftData = {
 ```
 
 ### Recept felépítése
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_excluding.jpg)
 ```lua
 Config.craftData = {
     foundry = { 
@@ -134,7 +149,7 @@ Config.craftData = {
             price = 0, -- bekerülési összeg (opcionális)
             exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
             excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
-            special = 'vehicleParts' -- specializált munkahelyen gyártható (opcionális)
+            special = 'only_steel' -- specializált munkahelyen gyártható (opcionális)
         }
     }
 }
@@ -196,10 +211,39 @@ Config.craftData = {
 ```
 
 ### Munkahelyek
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
 A receptekhez hasonlóan a munkahelyeket is lehet exkluzívvá vagy csoportok számára kizárttá tenni.
 A munkahelyek tetszőleges számban létrehozhatók. Minden szakmának saját munkahelye / munkahelyei vannak.
 Mindegyikhez saját markert, animációt, objektumot, specializációt és tulajdonost lehet meghatározni.
 A specializált munkahelyeken minden olyan terméket is le lehet gyártani, ami nincs specializálva.
+
+####Mit jelent a specializáció?
+A receptet hozzá lehet kötni akár egy munkahelyhez is.
+
+Például, vegyük alapul a vegyész szakmát. Receptjei közt megtalálhatók a legális és illegális szerek is.
+Gyógyszerek, festékek(spray), vegyszerek és a drogok is.
+
+Bárki főzhet drogot, kivéve a rendfenntartók, mentősök, tűzoltók (excluding), de az, hogy hol, nem mindegy.
+A droglabor asztalát és a recepteket fel kell cimkézni, így párosíthatók.
+
+```lua
+Config.workstations = { -- MUNKAHELYEK
+    {
+        workstation = 'chemist',
+        ...,
+        special = 'drug', -- ez lehet bármilyen cimke
+    }   
+}
+
+Config.craftData = { -- RECEPTEK
+    chemist = {
+        lsd = {
+            ...,
+            special = 'drug'
+        },     
+    }      
+}
+```
 
 Objektumok lehelyezéséhez hasznos segédlet:
 https://github.com/Ekhion76/eco_placement
@@ -207,6 +251,7 @@ https://github.com/Ekhion76/eco_placement
 Effekt markerek kereséséhez:
 https://github.com/Ekhion76/eco_effect
 
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 ```lua
 Config.workstations = {
 
@@ -314,6 +359,7 @@ Config.debugPoly = true
 ```
 
 ### Mellékelt hasznos tárgyak
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/addon_items.jpg)
 Lásd a QBCore_addition mappa tartalmát. Ikonok és leírás mellékelve!
 Működésükhöz a **/qb-core/shared/items.lua** fájlban létre kell hozni a tárgyakat.
 Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába

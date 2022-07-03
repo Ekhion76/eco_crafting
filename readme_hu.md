@@ -127,7 +127,6 @@ Config.craftData = {
 
 ### Recept felépítése
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_excluding.jpg)
 ```lua
 Config.craftData = {
     foundry = { 

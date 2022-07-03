@@ -55,7 +55,7 @@ A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munka
 megfelelő szakmai jártassági szinttel. 
 Minden szakmának saját munkahelye / munkahelyei vannak.
 
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/professions.jpg)
 
 A receptek szakmák szerint vannak kategorizálva. Pl.:
 - chemist

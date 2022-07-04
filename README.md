@@ -6,38 +6,65 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
 
 ### Features
-- Search in recipes
-- Easy to understand, recipes are built on eachother, you can go step by step
-- Recipe book
+- Recipes
+    - Search in recipes
+    - Easy to understand, recipes are built on eachother, you can go step by step
+    - The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
+	- Prices can be set, the production process can cost money.
+    - Recipe book
 
-- Labor point system. Each time when you craft you will need labor points.
-- The used labor points will increase your proficiency level in the category you crafted items.
-- "Labor point" item. (An item what gives you labor points, can be given as a present to your players or can be bought)
+- Labor point system (optional)
+    - Each time when you craft you will need labor points.
+    - The used labor points will increase your proficiency level in the category you crafted items.
+    - "Labor point" item. (An item what gives you labor points, can be given as a present to your players or can be bought)
 
-- Proficiency system
-- Proficiency statistics panel
-- "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
+- Proficiency system (optional)
+    - Proficiency statistics panel
+    - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
 
 - You can move the whole UI around your screen
-- The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
 - Workstands can be given separately to jobs or players, you can even set the owner as a single player.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
 
 - Target system or the regular distance settings are interchangable as a function.
-- Multilanguage (hu, en)
+- Multilanguage
 - Discord log included
 
 ## How does it work?
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/interactions.jpg)
+Function settings:
+You have the option to turn on and off different functions such as the money, profession and labor point systems to suit your needs.
+If the labor point system is turned off, the profesions system automatically turns off as well!
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/functionality.jpg)
+```lua
+Config.systemMode = {
+    profession = true, -- proficiency system on/off
+    labor = false, -- If you turn off the lab, the psrofession system will automatically turn off
+    money = false -- Money condition on/off
+}
+```
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/labor_points.jpg)
+
 In order to craft an item you will need ingredients, labor points and the neccesary proficiency level.
 Every profession has its own workstand/workstands.
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
+
 The recipes are categorized as professions. Eg.:
 - chemist
 - cooking
 - weaponry
 - foundry
-- handicraft(mechanic)
+- handicraft
+- ...
+- ...
  
 The used labor points increases the proficiency level in the profession where you use it and with that you can craft higher level items.
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
+
 For example you have two restaurants, restaurant1 and restaurant2. If you want restaurant1 to craft items which restaurant2 should not be able to craft then you can set recipes
 to be only visible to restaurant1(as a job) or you can create special workbenches.
 
@@ -95,6 +122,7 @@ Config.craftData = {
 ```
 
 ### Recipe structure
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
 ```lua
 Config.craftData = {
     foundry = {
@@ -116,7 +144,7 @@ Config.craftData = {
             price = 0, -- price to craft (optional)
             exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
             excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
-            special = 'vehicleParts' -- items can be crafted on a special workplace (optional)
+            special = 'only_steel' -- items can be crafted on a special workplace (optional)
         }
     }
 }
@@ -180,10 +208,36 @@ Config.craftData = {
 ```
 
 ### Workstands
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
 Workstands like recipes can be exclusive for different jobs/gangs.
 You can create as much workstands as you like. Every profession has its own workstand/workstands.
 For every workstand you can define an own marker, animation, object, spcialization and owner.
 You can craft all the non spcialized items in the spcialized workstands.
+
+#### What are specializations?
+
+Specializations are labelings, where you can tie recepies to workplaces.
+You are able to put labels on recepies and workplaces and make them points of interest.
+
+
+```lua
+Config.workstations = { -- WORKPLACES
+    {
+        workstation = 'chemist',
+        ...,
+        special = 'drug', -- This can be any lable
+    }   
+}
+
+Config.craftData = { -- RECEPIES
+    chemist = {
+        lsd = {
+            ...,
+            special = 'drug'
+        },  
+    }      
+}
+```
 
 Guide for the plascement of the objects:
 https://github.com/Ekhion76/eco_placement
@@ -191,6 +245,7 @@ https://github.com/Ekhion76/eco_placement
 Guide for creating effect markers:
 https://github.com/Ekhion76/eco_effect
 
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 ```lua
 Config.workstations = {
 
@@ -225,7 +280,7 @@ Config.workstations = {
 ```
 
 **Side note:** 
-All players will see the object (e.g. worKstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
+All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
 
 
 ### Blips
@@ -297,6 +352,7 @@ Config.debugPoly = true
 ```
 
 ### Attached useful tools
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/addon_items.jpg)
 See the QBCore_addition folder. Icons and readme attached.
 To make them work create the items in the  **/qb-core/shared/items.lua** file
 Copy the icons to the inventory folder **qb-inventory/html/images/** 

@@ -2,6 +2,7 @@
 ## FiveM QBCore Crafting script
 
 [![promo_video](https://img.youtube.com/vi/S94VstZLWlQ/0.jpg)](https://www.youtube.com/watch?v=S94VstZLWlQ)
+
 [TEBEX](https://eco-store.tebex.io/package/5177809)
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting1.jpg)

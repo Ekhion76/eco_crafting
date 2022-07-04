@@ -10,7 +10,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
 
 ### Jellemzők
-- Kódolt FiveM asset (Tebex)
+- FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
 - Receptek
     - Keresés a receptek között
     - Könnyen átlátható, egymásra épülő, több lépcsős receptek 

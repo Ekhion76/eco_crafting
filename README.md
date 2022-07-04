@@ -32,11 +32,11 @@
 
 ## How does it work?
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/interactions.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/functionality.jpg)
 Function settings:
 You have the option to turn on and off different functions such as the money, profession and labor point systems to suit your needs.
 If the labor point system is turned off, the profesions system automatically turns off as well!
 
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/functionality.jpg)
 ```lua
 Config.systemMode = {
     profession = true, -- proficiency system on/off
@@ -46,11 +46,10 @@ Config.systemMode = {
 ```
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/labor_points.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 
 In order to craft an item you will need ingredients, labor points and the neccesary proficiency level.
 Every profession has its own workstand/workstands.
-
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 
 The recipes are categorized as professions. Eg.:
 - chemist

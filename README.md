@@ -1,11 +1,16 @@
 # ECO CRAFTING
 ## FiveM QBCore Crafting script
 
+[![promo_video](https://img.youtube.com/vi/S94VstZLWlQ/0.jpg)](https://www.youtube.com/watch?v=S94VstZLWlQ)
+
+[TEBEX](https://eco-store.tebex.io/package/5177809)
+
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting6.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
 
 ### Features
+- FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
 - Recipes
     - Search in recipes
     - Easy to understand, recipes are built on eachother, you can go step by step

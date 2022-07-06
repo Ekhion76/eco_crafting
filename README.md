@@ -10,10 +10,10 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
 
 ### Features
-- FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
+- Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
 - Recipes
     - Search in recipes
-    - Easy to understand, recipes are built on eachother, you can go step by step
+    - Easy to understand, recipes are built on each other, you can go step by step
     - The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
 	- Prices can be set, the production process can cost money.
     - Recipe book
@@ -28,10 +28,10 @@
     - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
 
 - You can move the whole UI around your screen
-- Workstands can be given separately to jobs or gangs.
+- Workplaces can be given separately to jobs or gangs.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
 
-- Target system or the regular distance settings are interchangable as a function.
+- Target system or the regular distance settings are interchangeable as a function.
 - Multilanguage
 - Discord log included
 
@@ -53,7 +53,7 @@ Config.systemMode = {
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/labor_points.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 
-In order to craft an item you will need ingredients, labor points and the neccesary proficiency level.
+In order to craft an item you will need ingredients, labor points and the necessary proficiency level.
 Every profession has its own workstand/workstands.
 
 The recipes are categorized as professions. Eg.:
@@ -213,10 +213,10 @@ Config.craftData = {
 
 ### Workstands
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
-Workstands like recipes can be exclusive for different jobs/gangs.
+Workplaces like recipes can be exclusive for different jobs/gangs.
 You can create as much workstands as you like. Every profession has its own workstand/workstands.
-For every workstand you can define an own marker, animation, object, spcialization and owner.
-You can craft all the non spcialized items in the spcialized workstands.
+For every workplace you can define an own marker, animation, object, specialization and owner.
+You can craft all the non spcialized items in the specialized workplaces.
 
 #### What are specializations?
 
@@ -243,10 +243,10 @@ Config.craftData = { -- RECEPIES
 }
 ```
 
-Guide for the plascement of the objects:
+Help for the placement of the objects:
 https://github.com/Ekhion76/eco_placement
 
-Guide for creating effect markers:
+Help for creating effect markers:
 https://github.com/Ekhion76/eco_effect
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
@@ -346,9 +346,9 @@ exports['eco_crafting']:getProficiency((xPlayer or serverId))
 ```lua
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Uses the server config file values 
 ```
-1. If the workstand has an object allocated then the script will attach the polyBox. 
-2. If there is no object attached then the script will search in a 1 meter area from the workstand and if it is possible attaches the polyZone. 
-3. If it does not find then it will create a polyBox around the coordinate of the workstand.
+1. If the workplace has an object allocated then the script will attach the polyBox. 
+2. If there is no object attached then the script will search in a 1 meter area from the workplace and if it is possible attaches the polyZone. 
+3. If it does not find then it will create a polyBox around the coordinate of the workplace.
 
 For checking it please use:
 ```lua

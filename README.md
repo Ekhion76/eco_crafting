@@ -28,7 +28,7 @@
     - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
 
 - You can move the whole UI around your screen
-- Workstands can be given separately to jobs or players, you can even set the owner as a single player.
+- Workstands can be given separately to jobs or gangs.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
 
 - Target system or the regular distance settings are interchangable as a function.

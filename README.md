@@ -27,6 +27,15 @@
     - Proficiency statistics panel
     - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
 
+- Chance system (from version 1.2)
+    - For every recipe, you can set a success chance
+    
+- Custom scalable user interface (from version 1.2)
+    - The user interface is adjusted to the size of the game window, but it is also possible to adjust the size with '+ -' buttons
+    
+- Remaining Ingredients (from version 1.2)
+    - The ingredients marked with the recipes (- with signs) are not taken away by the system
+    
 - You can move the whole UI around your screen
 - Workplaces can be given separately to jobs or gangs.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
@@ -45,8 +54,9 @@ If the labor point system is turned off, the profesions system automatically tur
 ```lua
 Config.systemMode = {
     profession = true, -- proficiency system on/off
-    labor = false, -- If you turn off the lab, the psrofession system will automatically turn off
-    money = false -- Money condition on/off
+    labor = false, -- If you turn off the lab, the profession system will automatically turn off
+    money = false, -- Money condition on/off
+    chance = true -- To take into account chances of success (from version 1.2)
 }
 ```
 
@@ -141,11 +151,15 @@ Config.craftData = {
         
         steel = { 
             labor = 5, -- labor point (optional)
-            ingredients = { iron = 5 }, -- ingredients = piece !required
+            ingredients = { -- [ingredients = piece] !required
+                iron = 5,
+                hammer = -1 -- [-] the ingredients marked with the recipes (- with signs) are not taken away by the system (from version 1.2)
+            }, 
             time = 3,   -- needed time to create the item (optional)
             amount = 2, -- ammount of items you will get (optional)
             proficiency = 3000, -- min proficiency level needed (optional)
             price = 0, -- price to craft (optional)
+            chance = 75, -- Chance of crafting success in percentage (from version 1.2)
             exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
             excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
             special = 'only_steel' -- items can be crafted on a special workplace (optional)
@@ -161,6 +175,7 @@ Default recipe values:
     price = 0
     amount = 1
     proficiency = 0
+    chance = 100
     special = nil
     exclusive = nil
     excluding = nil

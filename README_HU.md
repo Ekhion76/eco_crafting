@@ -5,68 +5,72 @@
 
 [TEBEX](https://eco-store.tebex.io/package/5177809)
 
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting6.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting1.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting2.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
 
-### Features
+### Jellemzők
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
-- Recipes
-    - Search in recipes
-    - Easy to understand, recipes are built on each other, you can go step by step
-    - The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
-	- Prices can be set, the production process can cost money.
-    - Recipe book
+- Receptek
+    - Keresés a receptek között
+    - Könnyen átlátható, egymásra épülő, több lépcsős receptek 
+    - Testreszabhatóság, foglalkozás(ok)tól függő használhatóság vagy tiltás, speciális munkahelyhez kötés
+    - Beárazható, a termékek gyártása pénzbe is kerülhet.
+    - Receptkönyv
 
-- Labor point system (optional)
-    - Each time when you craft you will need labor points.
-    - The used labor points will increase your proficiency level in the category you crafted items.
-    - "Labor point" item. (An item what gives you labor points, can be given as a present to your players or can be bought)
+- Munkapont rendszer (kapcsolható)
+    - A termékek gyártása munkapontba kerül
+    - Az elhasznált munkapont az adott szakmában növeli a jártasságot
+    - Munkapont növelő tárgy (adható akár esemény jutalomként vagy vásárolhatóvá tehető)
 
-- Proficiency system (optional)
-    - Proficiency statistics panel
-    - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
+- Jártasság rendszer (kapcsolható)
+    - Jártasság statisztika oldal
+    - Jártasság növelő tárgy (adható akár eseményeken jutalomként, vagy felkutatható eldugott helyeken)
 
-- Chance system (from version 1.2)
-    - For every recipe, you can set a success chance
+- Esély rendszer (1.2 verziótól)
+    - A recept beállításban megadható százalékban, hogy a tárgy elkészítése mekkora eséllyel lesz sikeres.
     
-- Custom scalable user interface (from version 1.2)
-    - The user interface is adjusted to the size of the game window, but it is also possible to adjust the size with '+ -' buttons
+- Méretezhető grafikus felület (1.2 verziótól)
+    - A felület a játék ablakának méretéhez igazodik, de lehetőség van ezen felül is '+ -' gombokkal állítani a méretet
     
-- Remaining Ingredients (from version 1.2)
-    - The ingredients marked with the recipes (- with signs) are not taken away by the system
-    
-- You can move the whole UI around your screen
-- Workplaces can be given separately to jobs or gangs.
-- Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
+- Megmaradó hozzávalók (1.2 verziótól)
+    - A receptek (- jellel) megjelölt hozzávalóit nem veszi el a rendszer
 
-- Target system or the regular distance settings are interchangeable as a function.
-- Multilanguage
-- Discord log included
+- Mozgatható grafikus felület
+- A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
+- Effekt markerek(cp), animációk, asztalok(objektumok), minden munkahelyhez egyedileg állíthatók
 
-## How does it work?
+- Target rendszer / hagyományos közelség érzékelés választható
+- Többnyelvűség támogatás
+- Discordon vezetett eseménynapló
+
+## Működés:
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/interactions.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/functionality.jpg)
-Function settings:
-You have the option to turn on and off different functions such as the money, profession and labor point systems to suit your needs.
-If the labor point system is turned off, the profesions system automatically turns off as well!
+Alap működés beállítások:
+
+Lehetőség van a recept árak, jártasság, munkapont rendszert kikapcsolni egyenként, ha ezekere nincs szükség.
+Ha a munkapont rendszer ki van kapcsolva, akkor automatikusan kikapcsolódik a jártasság rendszer is!
 
 ```lua
 Config.systemMode = {
-    profession = true, -- proficiency system on/off
-    labor = false, -- If you turn off the lab, the profession system will automatically turn off
-    money = false, -- Money condition on/off
-    chance = true -- To take into account chances of success (from version 1.2)
+    profession = true, -- jártasság rendszer
+    labor = true, -- Ha ezt kikapcsolod automatikusan kikapcsolódik a jártasság rendszer is!
+    money = true, -- Recept árainak figyelembevétele
+    chance = true -- Siker esélyek figyelembevétele (1.2 verziótól)
 }
 ```
+
+A további leírás feltételezi, hogy minden rendszer be van kapcsolva.
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/labor_points.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 
-In order to craft an item you will need ingredients, labor points and the necessary proficiency level.
-Every profession has its own workstand/workstands.
+A tárgy elkészítéshez az alapanyagokon kívül szükséges rendelkezni munkapontokkal és 
+megfelelő szakmai jártassági szinttel. 
+Minden szakmának saját munkahelye / munkahelyei vannak.
 
-The recipes are categorized as professions. Eg.:
+A receptek szakmák szerint vannak kategorizálva. Pl.:
 - chemist
 - cooking
 - weaponry
@@ -74,21 +78,20 @@ The recipes are categorized as professions. Eg.:
 - handicraft
 - ...
 - ...
- 
-The used labor points increases the proficiency level in the profession where you use it and with that you can craft higher level items.
+
+Az elhasznált labor az adott szakmában növeli a jártasságot, így egyre magasabb szintű tárgyak készíthetők.
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
 
-For example you have two restaurants, restaurant1 and restaurant2. If you want restaurant1 to craft items which restaurant2 should not be able to craft then you can set recipes
-to be only visible to restaurant1(as a job) or you can create special workbenches.
+Nem érdemes például étterem1 és étterem2 alá sorolni a recepteket, mert az két külön szakmát jelentene, 
+holott a szakács jártasságot kellene növelniük a befektetett munkapontoknak egységesen.
 
-
-Here is an example how you can set recipes for two different restaurants in cooking profession:
+Íme egy példa, hogy a szakács szakmán belül, hogyan köthetünk recepteket külön éttermekhez és foglalkozásokhoz:
 
 ```lua
 Config.craftData = {
     cooking = {
-        tosti = { -- everybody can craft it on your server, at every 'cooking' workstand
+        tosti = { -- gyárthatja bárki, bármely 'cooking' munkahelynél
             labor = 10,
             ingredients = { item1 = 1, item2 = 1 },
             time = 5,
@@ -96,7 +99,7 @@ Config.craftData = {
             proficiency = 0,
             price = 0
         },
-        twerks_candy = { -- everybody can craft it on your server, but only in a speacial 'tacoBomb' workplace
+        twerks_candy = { -- gyárthatja bárki, de csak speciális 'tacoBomb' munkahelynél
             labor = 10,
             ingredients = { item1 = 1, item2 = 1 },
             time = 5,
@@ -105,7 +108,7 @@ Config.craftData = {
             price = 0,
             special = 'tacoBomb'
         },
-        snikkel_candy = { -- only the defined job and on a special 'hookies' workplace 
+        snikkel_candy = { -- csak az exkluzív tagok és csak speciális 'hookies' munkahelynél
             labor = 10,
             ingredients = { item1 = 1, item2 = 1 },
             time = 5,
@@ -113,13 +116,13 @@ Config.craftData = {
             proficiency = 0,
             price = 0,
             exclusive = {
-                mechanic = { 0, 1 }, -- selected ranks in a job (optional)
-                vagos = {}, -- all ranks in a job
-                'crips', -- all ranks in a job
+                mechanic = { 0, 1 }, -- rang lista (opcionális)
+                vagos = {}, -- minden rang elfogadva
+                'crips', -- minden rang elfogadva
             },
             special = 'hookies'
         },
-        sandwich = { -- everybody can craft it except police and ambulance
+        sandwich = { -- a police és ambulance foglalkozáson-on kívüliek gyárthatják
             labor = 10,
             ingredients = { item1 = 1, item2 = 1 },
             time = 5,
@@ -135,40 +138,40 @@ Config.craftData = {
 }
 ```
 
-### Recipe structure
+### Recept felépítése
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
 ```lua
 Config.craftData = {
-    foundry = {
+    foundry = { 
     
-        -- Basic recipe. Yes, that's all, the rest of the default gets value!
-        
-        aluminum = { -- item what you can create
-            ingredients = { aluminumoxide = 3 } -- required
+        -- Alap recept. Igen, ennyi az egész. A többi alap értéket kap! 
+    
+        aluminum = { -- elkészítendő tárgy
+            ingredients = { aluminumoxide = 3 } -- Csak ez szükséges
         },
         
-        -- Fully optimized recipe
+        -- Teljesen opcionalizált recept
         
-        steel = { 
-            labor = 5, -- labor point (optional)
-            ingredients = { -- [ingredients = piece] !required
-                iron = 5,
-                hammer = -1 -- [-] the ingredients marked with the recipes (- with signs) are not taken away by the system (from version 1.2)
+        steel = {
+            labor = 5, -- munkapont (opcionális)
+            ingredients = { -- [hozzávalók = db] szükséges megadni
+                steel = 5, 
+                hammer = -1 -- [-] előjeles darabszám azt jelzi, hogy ez a hozzávaló nem lesz elvéve (1.2 verziótól)
             }, 
-            time = 3,   -- needed time to create the item (optional)
-            amount = 2, -- ammount of items you will get (optional)
-            proficiency = 3000, -- min proficiency level needed (optional)
-            price = 0, -- price to craft (optional)
-            chance = 75, -- Chance of crafting success in percentage (from version 1.2)
-            exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
-            excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
-            special = 'only_steel' -- items can be crafted on a special workplace (optional)
+            time = 3,   -- elkészítési idő másodpercben (opcionális)
+            amount = 1, -- kapott késztermék mennyisége (opcionális)
+            proficiency = 3000, -- minimum szakmai jártasság (opcionális)
+            price = 0, -- bekerülési összeg (opcionális)
+            chance = 75, -- Gyártási siker esélye százalékban (1.2 verziótól)
+            exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
+            excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
+            special = 'only_steel' -- specializált munkahelyen gyártható (opcionális)
         }
     }
 }
 ```
 
-Default recipe values:
+Alapértelmezett recept értékek:
 
     labor = 0
     time = 10
@@ -179,15 +182,13 @@ Default recipe values:
     special = nil
     exclusive = nil
     excluding = nil
- 
 
-
-### Exclusive settings
-- profession(job) and group (gang) you can add all as list
-- if you have them in tables, you need to add the number of the ranks Eg.: mechanic = { 0, 1 }
-- If you have an empty table all ranks will work. Eg.: mechanic = {}
-- If you have it in strings then all the ranks will work Eg.: 'mechanic'
-- The jobs which are not used here will not see the recipes in the recipe book
+### Exkluzív beállítás
+- foglalkozás(job) és csoport(gang) ömlesztve megadható
+- ha táblaként van megadva, akkor csak a felsorolt rang engedélyezett Pl.: mechanic = { 0, 1 }
+- üres tábla esetén az összes rang engedélyezett. Pl.: mechanic = {}
+- karakterlánc esetén szintén az összes rang engedélyezett Pl.: 'mechanic'
+- a felsoroltokon kívül eső szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 
 ```lua
 Config.craftData = {
@@ -198,18 +199,18 @@ Config.craftData = {
              -- ...
              -- ...
              exclusive = {
-                 mechanic = { 0, 1 }, -- rank list (optional)
-                 vagos = {}, -- all ranks accepted
-                 'crips', -- all ranks accepted
+                 mechanic = { 0, 1 }, -- rang lista (opcionális)
+                 vagos = {}, -- minden rang elfogadva
+                 'crips', -- minden rang elfogadva
              }
          }
      }
  }
 ```
 
-### Excluding 
-- only in string! profesions(job) and groups(gang), ranks are not needed here.
-- The listed professions and gangs won't be able to see the recipes in the recipe book.
+### Excluding, kizárás beállítás
+- karakterlánc felsorolást fogad el vegyesen szakmák(job) és csoportok(gang), nincsenek a rangok figyelembe véve.
+- a felsorolt szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 ```lua
 Config.craftData = {
     foundry = { 
@@ -220,93 +221,96 @@ Config.craftData = {
              -- ...
              excluding = {
                  'mechanic', 'vagos', 'crips',
-             }
+             } 
          }
      }
  }
 ```
 
-### Workstands
+### Munkahelyek
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
-Workplaces like recipes can be exclusive for different jobs/gangs.
-You can create as much workstands as you like. Every profession has its own workstand/workstands.
-For every workplace you can define an own marker, animation, object, specialization and owner.
-You can craft all the non spcialized items in the specialized workplaces.
+A receptekhez hasonlóan a munkahelyeket is lehet exkluzívvá vagy csoportok számára kizárttá tenni.
+A munkahelyek tetszőleges számban létrehozhatók. Minden szakmának saját munkahelye / munkahelyei vannak.
+Mindegyikhez saját markert, animációt, objektumot, specializációt és tulajdonost lehet meghatározni.
+A specializált munkahelyeken minden olyan terméket is le lehet gyártani, ami nincs specializálva.
 
-#### What are specializations?
+####Mit jelent a specializáció?
+A specializáció gyakorlatilag egy cimkézés, mellyel össze lehet kötni a receptet a munkahellyel.
 
-Specializations are labelings, where you can tie recepies to workplaces.
-You are able to put labels on recepies and workplaces and make them points of interest.
+Például, vegyük alapul a vegyész szakmát. Receptjei közt megtalálhatók a legális és illegális szerek is.
+Gyógyszerek, festékek(spray), vegyszerek és a drogok is.
 
+Bárki főzhet drogot, kivéve a rendfenntartók, mentősök, tűzoltók (excluding), de az, hogy hol, nem mindegy.
+A droglabor asztalát és a recepteket fel kell cimkézni, így párosíthatók.
 
 ```lua
-Config.workstations = { -- WORKPLACES
+Config.workstations = { -- MUNKAHELYEK
     {
         workstation = 'chemist',
         ...,
-        special = 'drug', -- This can be any lable
+        special = 'drug', -- ez lehet bármilyen cimke
     }   
 }
 
-Config.craftData = { -- RECEPIES
+Config.craftData = { -- RECEPTEK
     chemist = {
         lsd = {
             ...,
             special = 'drug'
-        },  
+        },     
     }      
 }
 ```
 
-Help for the placement of the objects:
+Objektumok lehelyezéséhez hasznos segédlet:
 https://github.com/Ekhion76/eco_placement
 
-Help for creating effect markers:
+Effekt markerek kereséséhez:
 https://github.com/Ekhion76/eco_effect
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplaces_customize.jpg)
 ```lua
 Config.workstations = {
 
-    -- Basic workstand
+    -- Alap munkahely
     {
-        workstation = 'cooking', -- profession (this is defined at the recipes)
+        workstation = 'cooking', -- szakma (ez van meghatározva a recepteknél)
         pos = vector4(226.98, -889.95, 29.7, 70.16),
     },
     
-    -- Fully optimized workstand
+    -- Teljesen opcionalizált munkahely
     {
-        workstation = 'cooking', -- profession (this is defined at the recipes)
+        workstation = 'cooking', -- szakma (ez van meghatározva a recepteknél)
         pos = vector4(216.98, -889.95, 29.7, 70.16),
-        animation = { -- (optional)
+        animation = { -- (opcionális)
             dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
             anim = 'machinic_loop_mechandplayer',
             flag = 16
         },
-        fx = { -- (optional)
+        fx = { -- (opcionális)
             dict = 'cut_family5',
             name = 'cs_alien_hand_light',
             offset = vector3(0, 0, 1.1),
             loopedAtCoord = { 0.0, 0.0, 0.0, 1.0 },
             loopedColour = { 8.0, 2.0, 2.0 },
         },
-        object = 'v_ret_fh_kitchtable', -- (optional)
-        special = '', -- (optional)
-        exclusive = { "ballas", "vagos" }, -- (optional)
-        excluding = { "police", "ambulance" } -- (optional, n.a. if exclusive is used)
+        object = 'v_ret_fh_kitchtable', -- (opcionális)
+        special = '', -- (opcionális)
+        exclusive = { "ballas", "vagos" }, -- (opcionális)
+        excluding = { "police", "ambulance" } -- (opcionális, ha van exkluzív beállítás ez figyelmen kívűl marad)
     }
 }
 ```
 
-**Side note:** 
-All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
+**Megjegyzés:** 
+A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely exkluzív, vagy az illető ki van zárva! 
+Jelzés(marker) nem lesz látható és interakciót sem tud kezdeményezni.
 
+### Blippek
+A blippeket a konfigurációs fájlban manuálisan kell beállítani, mert: 
 
-### Blips
-The blips can be set manually in the configuration file because:
-
-- the workstand can be secret
-- workstand groups can use only one blip
+- a munkahely lehet titkos
+- esetleges munkahely csoportokat elég akár egy blippel jelezni
 ```lua
 Config.blips = {
     {
@@ -326,19 +330,19 @@ Config.blips = {
 }
 ```
 
-### Needed extensions, dependencies
- - **The script only uses QBCore 1.1 standard packages, no additional downloads needed**
- - DrawText (standard from qb-core 1.1)
- - qb-target + PolyZone (optional standard)
- - qb-inventory (also tested with lj-inventory)
+### Függőségek
+ - **Kizárólag QBCore 1.1 alap csomagokat használ, nem szükséges semmit külön telepíteni**
+ - DrawText (qb-core 1.1-tól alap)
+ - qb-target + PolyZone (opcionális alap)
+ - qb-inventory (lj-inventory-val is tesztelve)
 
-Always uses the actual pictures from the inventory. The path can be set in the config file.
+Az aktuális inventory ikonjait használja. A konfigurációs fájlban lehet megadni az elérési útvonalat.
 ```lua
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
 ```
 
 ### Server exports
- The workstand properties and the profession level can be adjusted and monitored with external scripts.
+Külső szkriptekből lekérdezhetők, befolyásolhatók a munkapont és jártasság értékek
 ```lua
 exports['eco_crafting']:addLabor((xPlayer or serverId), amount)
 exports['eco_crafting']:removeLabor((xPlayer or serverId), amount)
@@ -350,34 +354,36 @@ exports['eco_crafting']:getLabor((xPlayer or serverId))
 exports['eco_crafting']:getProficiency((xPlayer or serverId))
 ```
 
-### Install
-- copy to the resource folder
+### Telepítés
+- másold be a resource mappába
 - refresh
 - start eco_crafting
-- the script do not use databases (the script uses meta data)
+- adatbázist nem igényel (meta adatokat használ)
 
-### Target system:
-**turning on qb-target:**
+### Target működése:
+**qb-target bekapcsolása:**
 ```lua
-Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Uses the server config file values 
+Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Átveszi a szerver konfigurációs fájl értékét 
 ```
-1. If the workplace has an object allocated then the script will attach the polyBox. 
-2. If there is no object attached then the script will search in a 1 meter area from the workplace and if it is possible attaches the polyZone. 
-3. If it does not find then it will create a polyBox around the coordinate of the workplace.
+1. Amennyiben a munkahelyhez objektum is van rendelve, akkor ahhoz hozzárendeli a polyBoxot.
+2. Ha nincs objektum, akkor a munkahely koordinátájától 1 méteres körzetben keresést folytat és ha lehetséges
+ráhelyezi a polyZonát. 
+3. Ha nem talál, létrehoz egy adott méretű polyBox-ot a koordináta körül. 
 
-For checking it please use:
+Ellenőrzéshez használd:
 ```lua
 Config.debugPoly = true
 ```
 
-### Attached useful tools
+### Mellékelt hasznos tárgyak
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/addon_items.jpg)
-See the QBCore_addition folder. Icons and readme attached.
-To make them work create the items in the  **/qb-core/shared/items.lua** file
-Copy the icons to the inventory folder **qb-inventory/html/images/** 
+Lásd a QBCore_addition mappa tartalmát. Ikonok és leírás mellékelve!
+Működésükhöz a **/qb-core/shared/items.lua** fájlban létre kell hozni a tárgyakat.
+Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
 
-- Recipe book (recipe_collection)
-- Labor point increase +1000 point (labor_enhancer)
-- Proficiency point increase +1000 point (weaponry_enhancer) 
+- Receptkönyv (recipe_collection)
+- Munkapont növelő +1000 pont (labor_enhancer)
+- Jártasság növelő +1000 pont (weaponry_enhancer) -- példa(nem ajánlott)
 
-They are introduced in the **server/usableitem.lua** file as an example.
+A **server/usableitem.lua** fájlban bevezetésre kerültek mintaként.
+

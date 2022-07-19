@@ -1,3 +1,17 @@
+1.2.1
+- css: added scrollbar to the statistics panel
+- switching proficiency icons to the statistics panel ()
+
+Config file changes:
+```lua
+-- Display components in user interface(nui)
+Config.displayComponent = {
+    chance = true, -- show loaded recipe chance
+    uiSizeBtn = true, -- show '+ -' buttons
+    professionIcon = false -- show profession icon in STATISTICS panel.(Add professionName.png to html/img folder e.g weaponry.png, cooking.png)
+}
+```
+
 1.2
 - added remaining ingredient function (use '-' sign for amount)
 - rework responsive user interface (add min and max size)

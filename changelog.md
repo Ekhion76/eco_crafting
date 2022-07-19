@@ -1,6 +1,6 @@
 1.2.1
 - css: added scrollbar to the statistics panel
-- switching proficiency icons to the statistics panel ()
+- switching proficiency icons to the statistics panel
 
 Config file changes:
 ```lua

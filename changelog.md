@@ -1,7 +1,7 @@
 1.3
 - added level system
 - levels can give discounts (labor, price, time, chance)
-- added deutsche sprache
+- added German language
 - 'Config.inMarkerDistance' has been eliminated, the 'actionDistance' added to the Config.workstations
 
 Config file changes:

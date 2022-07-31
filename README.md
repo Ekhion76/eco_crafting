@@ -9,7 +9,7 @@
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting6.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting8.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)
 
 ### Features
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
@@ -38,12 +38,16 @@
 - Remaining Ingredients (from version 1.2)
     - The ingredients marked with the recipes (- with signs) are not taken away by the system
     
+- Level system (from version 1.3)
+    - Can be determined by level as a percentage of benefits
+    - Discounts can be applied to the 4 items below: chance, price, time, labor
+
 - You can move the whole UI around your screen
 - Workplaces can be given separately to jobs or gangs.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
 
 - Target system or the regular distance settings are interchangeable as a function.
-- Multilanguage
+- Multilingual
 - Discord log included
 
 ## How does it work?
@@ -81,9 +85,52 @@ The used labor points increases the proficiency level in the profession where yo
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
 
+### Levels, discounts (from version 1.3)
+With increasing skills, discounts can be set.
+The chances of success can increase and reduce crafting time as well as price and labor costs.
+
+It is important that the discounts are not smaller than the previous level because the previous level is always given
+the fund to calculate the current discount.
+
+For full discount, you must reach the upper limit of level.
+
+The last level sets/overwrites the value of Config.proficiencyCap.
+
+```lua
+Config.ranks = {
+
+    { -- 0. Base
+        limit = 20, -- proficiency upper limit
+        labor = 0, -- labor cost reduction as a percentage
+        time = 0, -- crafting time reduction as a percentage
+        price = 0, -- money cost reduction as a percentage
+        chance = 0, -- increase chance as a percentage
+    },
+    {
+    ...
+    },
+    { -- 11. Famed
+        limit = 120000, -- last rank sets the proficiencyCap
+        labor = 40, 
+        time = 20,
+        price = 20,
+        chance = 20,
+    }
+} 
+```
+
+Example of calculation:
+```lua
+    labor   = math.ceil(recipe.labor    - (recipe.labor / 100)      * rank.labor)
+    price   = math.ceil(recipe.price    - (recipe.price / 100)      * rank.price);
+    time    = math.ceil(recipe.time     - (recipe.time / 100)       * rank.time)
+    chance  = math.ceil(recipe.chance   + (recipe.chance / 100)     * rank.chance);
+```
+
+At the Famed level, the discount is 40%, so 100 labor points fall to 60.
+
 For example you have two restaurants, restaurant1 and restaurant2. If you want restaurant1 to craft items which restaurant2 should not be able to craft then you can set recipes
 to be only visible to restaurant1(as a job) or you can create special workbenches.
-
 
 Here is an example how you can set recipes for two different restaurants in cooking profession:
 
@@ -246,7 +293,7 @@ Config.workstations = { -- WORKPLACES
     {
         workstation = 'chemist',
         ...,
-        special = 'drug', -- This can be any lable
+        special = 'drug', -- This can be any label
     }   
 }
 
@@ -295,7 +342,8 @@ Config.workstations = {
         object = 'v_ret_fh_kitchtable', -- (optional)
         special = '', -- (optional)
         exclusive = { "ballas", "vagos" }, -- (optional)
-        excluding = { "police", "ambulance" } -- (optional, n.a. if exclusive is used)
+        excluding = { "police", "ambulance" }, -- (optional, n.a. if exclusive is used)
+        actionDistance = 1.5 -- how many meters should you approach the workplace to open (optional, default 1.5)
     }
 }
 ```
@@ -303,6 +351,18 @@ Config.workstations = {
 **Side note:** 
 All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
 
+### GRAPHICS UI SIZING
+The graphics interface can be scaled at the beginning of the html/main.css file by rewriting '--html-font-size' value:
+
+```css
+:root {
+    /* WINDOW SIZE */
+        --html-font-size: 10px; /* (px)This determines the size of the window! */
+}
+```
+
+If the resize function is turned on (Config.displayComponent -> uiSizeBtn = true), the user can size the interface individually
+using the '+ -' buttons in the upper left corner.
 
 ### Blips
 The blips can be set manually in the configuration file because:
@@ -364,7 +424,11 @@ exports['eco_crafting']:getProficiency((xPlayer or serverId))
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Uses the server config file values 
 ```
 1. If the workplace has an object allocated then the script will attach the polyBox. 
+
 2. If there is no object attached then the script will search in a 1 meter area from the workplace and if it is possible attaches the polyZone. 
+**Tip:** for mlo objects is most easily found in the admin menu
+'Developer Options' -> 'Entity View Mode' -> 'FreeAim Mode' and the object coordinate can be read.
+
 3. If it does not find then it will create a polyBox around the coordinate of the workplace.
 
 For checking it please use:

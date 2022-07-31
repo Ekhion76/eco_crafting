@@ -1,3 +1,13 @@
+1.3
+- added level system
+- levels can give discounts (labor, price, time, chance)
+- added deutsche sprache
+- 'Config.inMarkerDistance' has been eliminated, the 'actionDistance' added to the Config.workstations
+
+Config file changes:
+- Added ranks
+- 'Config.inMarkerDistance' relocated Config.workstations -> actionDistance
+
 1.2.1
 - css: added scrollbar to the statistics panel
 - switching proficiency icons to the statistics panel

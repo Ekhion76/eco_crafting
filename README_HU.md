@@ -9,7 +9,8 @@
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting1.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting2.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting3.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)
+
 
 ### Jellemzők
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
@@ -37,6 +38,12 @@
     
 - Megmaradó hozzávalók (1.2 verziótól)
     - A receptek (- jellel) megjelölt hozzávalóit nem veszi el a rendszer
+    
+- Szakma ikonok a statisztika oldalon (1.2.1 verziótól)
+    
+- Szint rendszer (1.3 verziótól)
+    - Szintenként meghatározható a kedvezmények mértéke százalékban
+    - Kedvezmények az alábbi 4 tételre alkalmazhatók: chance, price, time, labor
 
 - Mozgatható grafikus felület
 - A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
@@ -84,6 +91,50 @@ A receptek szakmák szerint vannak kategorizálva. Pl.:
 Az elhasznált labor az adott szakmában növeli a jártasságot, így egyre magasabb szintű tárgyak készíthetők.
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
+
+#### Szintek, kedvezmények
+A jártasság növekedésével kedvezmények állíthatók be. 
+Növekedhet a sikeresség esélye és csökkenhet az elkészítés idő, valamint az ár és labor költségek.
+
+Fontos, hogy a kedvezmények mindig növekedjenek vagy stagnáljanak, mert mindig az előző szint értéke adja
+az alapot a jelenlegi kedvezmény kiszámolásához.
+
+A szintben meghatározott kedvezmény mértéke csak a felső határon lesz teljes.
+
+Az utolsó szint beállítja/felülírja a Config.proficiencyCap értékét.
+
+```lua
+Config.ranks = {
+
+    { -- 0. Base
+        limit = 20, -- jártassági pont küszöb
+        labor = 0, -- labor költség csökkentés százalékban
+        time = 0, -- készítési idő csökkentés százalékban
+        price = 0, -- ár csökkentés százalékban
+        chance = 0, -- esély növelés százalékban
+    },
+    {
+    ...
+    },
+    { -- 11. Famed
+        limit = 120000, -- Utolsó szint beállítja a legnagyobb elérhető jártasságpontot
+        labor = 40, 
+        time = 20,
+        price = 20,
+        chance = 20,
+    }
+}
+```
+
+Példa a számításra:
+```lua
+    labor   = math.ceil(recipe.labor    - (recipe.labor / 100)      * rank.labor)
+    price   = math.ceil(recipe.price    - (recipe.price / 100)      * rank.price);
+    time    = math.ceil(recipe.time     - (recipe.time / 100)       * rank.time)
+    chance  = math.ceil(recipe.chance   + (recipe.chance / 100)     * rank.chance);
+```
+
+Famed szinten a kedvezmény 40%, tehát 100 labor lecsökken 60-ra.
 
 Nem érdemes például étterem1 és étterem2 alá sorolni a recepteket, mert az két külön szakmát jelentene, 
 holott a szakács jártasságot kellene növelniük a befektetett munkapontoknak egységesen.
@@ -299,7 +350,8 @@ Config.workstations = {
         object = 'v_ret_fh_kitchtable', -- (opcionális)
         special = '', -- (opcionális)
         exclusive = { "ballas", "vagos" }, -- (opcionális)
-        excluding = { "police", "ambulance" } -- (opcionális, ha van exkluzív beállítás ez figyelmen kívűl marad)
+        excluding = { "police", "ambulance" }, -- (opcionális, ha van exkluzív beállítás ez figyelmen kívűl marad)
+        actionDistance = 1.5 -- megközelítési távolság a megnyitáshoz (opcionális, alapérték 1.5)
     }
 }
 ```
@@ -307,6 +359,20 @@ Config.workstations = {
 **Megjegyzés:** 
 A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely exkluzív, vagy az illető ki van zárva! 
 Jelzés(marker) nem lesz látható és interakciót sem tud kezdeményezni.
+
+
+### Ablak mérete
+A grafikus felületet a html/main.css fájl elején található, '--html-font-size' érték átírásával lehet méretezni:
+
+```css
+:root {
+    /* ABLAK MÉRET */
+    --html-font-size: 10px; /* (px)Az itt megadott betűméret az ablak méretére befolyással van! */
+}
+```
+
+Ha be van kapcsolva az átméretezés funkció (Config.displayComponent -> uiSizeBtn = true), akkor a felhasználó egyénileg is méretezheti a felületet
+a bal felső sarokban található '+ -' gombok segítségével.
 
 ### Blippek
 A blippeket a konfigurációs fájlban manuálisan kell beállítani, mert: 
@@ -368,8 +434,12 @@ exports['eco_crafting']:getProficiency((xPlayer or serverId))
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Átveszi a szerver konfigurációs fájl értékét 
 ```
 1. Amennyiben a munkahelyhez objektum is van rendelve, akkor ahhoz hozzárendeli a polyBoxot.
+
 2. Ha nincs objektum, akkor a munkahely koordinátájától 1 méteres körzetben keresést folytat és ha lehetséges
 ráhelyezi a polyZonát. 
+**TIPP:** Mappolt objektumokhoz a legegyszerűbben az ADMIN menüben található 
+'Developer Options' -> 'Entity View Mode' -> 'Freeaim Mode' és a tárgyra célozva leolvasható a koordináta.
+
 3. Ha nem talál, létrehoz egy adott méretű polyBox-ot a koordináta körül. 
 
 Ellenőrzéshez használd:
@@ -388,4 +458,3 @@ Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
 - Jártasság növelő +1000 pont (weaponry_enhancer) -- példa(nem ajánlott)
 
 A **server/usableitem.lua** fájlban bevezetésre kerültek mintaként.
-

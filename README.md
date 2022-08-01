@@ -339,9 +339,17 @@ Config.workstations = {
             loopedAtCoord = { 0.0, 0.0, 0.0, 1.0 },
             loopedColour = { 8.0, 2.0, 2.0 },
         },
-        object = 'v_ret_fh_kitchtable', -- (optional)
+        object = { -- (optional)
+            model = 'v_ret_fh_kitchtable',
+            placeOnGround = true, -- (optional) (PlaceObjectOnGroundProperly(object))
+            offset = vector3(0, 0, 0) -- (optional) shift on the x, y, z axis
+        },
         special = '', -- (optional)
-        exclusive = { "ballas", "vagos" }, -- (optional)
+        exclusive = { -- (optional) e.g 3 different options, they can be combined:
+             mechanic = { 0, 1 }, -- rank list (optional)
+             vagos = {}, -- all ranks accepted
+             'crips', -- all ranks accepted
+        },
         excluding = { "police", "ambulance" }, -- (optional, n.a. if exclusive is used)
         actionDistance = 1.5 -- how many meters should you approach the workplace to open (optional, default 1.5)
     }

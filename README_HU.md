@@ -347,9 +347,17 @@ Config.workstations = {
             loopedAtCoord = { 0.0, 0.0, 0.0, 1.0 },
             loopedColour = { 8.0, 2.0, 2.0 },
         },
-        object = 'v_ret_fh_kitchtable', -- (opcionális)
+        object = { -- (opcionális)
+            model = 'v_ret_fh_kitchtable',
+            placeOnGround = true, -- (opcionális) (PlaceObjectOnGroundProperly(object))
+            offset = vector3(0, 0, 0) -- (opcionális) Eltolás X, Y, Z tengelyen
+        },
         special = '', -- (opcionális)
-        exclusive = { "ballas", "vagos" }, -- (opcionális)
+        exclusive = { -- (opcionális) a példa 3 módszert mutat be, ezek kombinálhatók:
+             mechanic = { 0, 1 }, -- rang lista (opcionális)
+             vagos = {}, -- minden rang elfogadva
+             'crips', -- minden rang elfogadva
+        },
         excluding = { "police", "ambulance" }, -- (opcionális, ha van exkluzív beállítás ez figyelmen kívűl marad)
         actionDistance = 1.5 -- megközelítési távolság a megnyitáshoz (opcionális, alapérték 1.5)
     }

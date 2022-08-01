@@ -1,3 +1,23 @@
+1.3.1
+- object placement enlarged customization
+
+Config file changes:
+
+```lua
+Config.workstations = {
+    {
+        -- ... other settings,
+        -- object = 'v_ret_ml_tableb', -- outdated, but still working (DEFAULT: placeOnGround = true and no offset)
+        
+        object = { -- new set
+            model = 'v_ret_ml_tableb',
+            placeOnGround = true, -- Automatic adjustment to the ground level (optional)
+            offset = vector3(0, 0, 0) -- shift on x, y, z axis (optional)
+        }
+    }    
+} 
+```
+
 1.3
 - added level system
 - levels can give discounts (labor, price, time, chance)

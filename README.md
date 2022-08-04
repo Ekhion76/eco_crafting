@@ -41,6 +41,8 @@
 - Level system (from version 1.3)
     - Can be determined by level as a percentage of benefits
     - Discounts can be applied to the 4 items below: chance, price, time, labor
+    
+- Adding 'Info' data to the crafted product and inheritance from ingredients (Similarly as a serial number of a weapon)
 
 - You can move the whole UI around your screen
 - Workplaces can be given separately to jobs or gangs.
@@ -208,10 +210,15 @@ Config.craftData = {
             amount = 2, -- ammount of items you will get (optional)
             proficiency = 3000, -- min proficiency level needed (optional)
             price = 0, -- price to craft (optional)
-            chance = 75, -- Chance of crafting success in percentage (from version 1.2)
+            chance = 75, -- Chance of crafting success in percentage (optional)
             exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
             excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
-            special = 'only_steel' -- items can be crafted on a special workplace (optional)
+            special = 'only_steel', -- items can be crafted on a special workplace (optional)
+            infoInherit = false, -- Inherit the 'Info' data of the ingredients to the crafted product (optional)
+            info = { -- Sets the information for the product (optional)
+                param1 = 'value1',
+                param2 = 'value2'
+            }
         }
     }
 }
@@ -228,8 +235,98 @@ Default recipe values:
     special = nil
     exclusive = nil
     excluding = nil
+    infoInherit = nil
+    info = nil
+         
+### 'Info'(meta) data settings
+**IMPORTANT:** If the object receives 'info' data, you should not stack.
+It is recommended to make it unique in /qb-core/shared/items.lua
  
+- **inheritance from the ingredients:** 
+     
+```infoInherit = true```
 
+The product inherits 'info' data from all ingredients.
+
+What can you use?
+For example, stimulate a lemonade or even poison with soup. 
+```
+E.g.: Lemonade recipe: 
+- water contains 'blur' effect, 
+- lemon contains 'shake' effect,
+- sugar contains 'crack'
+```
+The following info is created for lemonade:
+
+Inherited data:
+ 
+ ```lua
+info = {
+     effects = { 'shake', 'blur' },
+     contain = 'crack'
+}
+```
+ 
+In the case of the same keys, collect values in table
+     
+- **to add constant data**
+ 
+The recipe can determine the info parameter. An 'table' is required to specify.
+ 
+ ```lua
+-- recipe
+Config.craftData = { 
+ cooking = { 
+      lemonade = {
+          -- ...
+          info = {
+              effects = 'cold'
+          }
+      }
+  }
+}
+ ```
+ 
+Lemonade will always receive 'cold' effect parameter
+ 
+```lua
+   -- finished product
+  info = { 
+      effects = 'cold'
+  }
+```
+ 
+If inherit from the ingredients is also turned on, it will be added:
+ 
+Inherited and constant info data:
+ 
+```lua
+-- finished product
+info = { 
+ effects = { 'shake', 'blur', 'cold' },
+ contain = 'crack'
+}
+```
+ 
+- **add creator data**
+
+```lua
+Config.creatorData = true
+```
+Unique and weapon type items, the creator's data are added.
+Expanding the above example is the result:
+
+```lua
+info = {
+    effects = { 'shake', 'blur', 'cold' },
+    contain = 'crack',
+    creator = {
+        citizenid = 'AFG05790',
+        charName = 'Roy Tucker',
+        name = 'Ekhion'
+    }
+}
+```
 
 ### Exclusive settings
 - profession(job) and group (gang) you can add all as list

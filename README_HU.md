@@ -44,6 +44,8 @@
 - Szint rendszer (1.3 verziótól)
     - Szintenként meghatározható a kedvezmények mértéke százalékban
     - Kedvezmények az alábbi 4 tételre alkalmazhatók: chance, price, time, labor
+    
+- 'Info' adatok hozzáadása az elkészített termékhez, valamint öröklési lehetőség a hozzávalóktól. (Hasonlóan, mint például a fegyverek sorozatszáma)
 
 - Mozgatható grafikus felület
 - A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
@@ -204,7 +206,7 @@ Config.craftData = {
         },
         
         -- Teljesen opcionalizált recept
-        
+       
         steel = {
             labor = 5, -- munkapont (opcionális)
             ingredients = { -- [hozzávalók = db] szükséges megadni
@@ -215,10 +217,15 @@ Config.craftData = {
             amount = 1, -- kapott késztermék mennyisége (opcionális)
             proficiency = 3000, -- minimum szakmai jártasság (opcionális)
             price = 0, -- bekerülési összeg (opcionális)
-            chance = 75, -- Gyártási siker esélye százalékban (1.2 verziótól)
+            chance = 75, -- Gyártási siker esélye százalékban (opcionális)
             exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
             excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
-            special = 'only_steel' -- specializált munkahelyen gyártható (opcionális)
+            special = 'only_steel', -- specializált munkahelyen gyártható (opcionális)
+            infoInherit = false, -- átörökíti a hozzávalók 'info' adatait az elkészített termékre (opcionális)
+            info = { -- A termékhez beállítja az információt (opcionális)
+                param1 = 'value1',
+                param2 = 'value2'
+            }
         }
     }
 }
@@ -235,6 +242,91 @@ Alapértelmezett recept értékek:
     special = nil
     exclusive = nil
     excluding = nil
+    infoInherit = nil
+    info = nil
+        
+### Info (meta) adatok beállítása
+FONTOS: Ha a tárgy 'info' adatokat kap, nem szabad halmozni(stack), 
+ezért ajánlott a /qb-core/shared/items.lua fájlban egyedivé(**UNIQUE**) tenni!
+Ha egy slot-ban több info-t tatalmazó tárgy van, akkor az első infóját átveszi mind!
+
+#### Hozzávalók adatainak öröklése:
+    
+```lua
+infoInherit = true -- minden receptnél külön állítandó
+```
+
+A termék az összes hozzávalójától örökli az 'info' adatokat, kivétel a szériaszámot és a készítőt.
+
+**Mire használható?** 
+
+Például limonádéhoz serkentőt, vagy akár leveshez mérget keverni. 
+
+Nézzük a limonádé receptjét:
+```
+víz tartalmaz egy 'blur' effekt paramétert,
+citrom a citrom egy 'shake' effektet, 
+cukor tartalmaz 'crack'-et
+```
+
+Elkészítéskor a következő info jön létre:
+
+```lua
+info = {
+    effects = { 'shake', 'blur' },
+    contain = 'crack'
+}
+```
+Több azonos kulcs esetén az értékeket táblába gyüjti
+    
+#### fix adatok hozzáadása
+
+A receptben meghatározható az info paraméter. Táblát szükséges megadni.
+
+```lua
+Config.craftData = {
+    cooking = { 
+         lemonade = {
+             -- ...
+             info = {
+                 effects = 'cold'
+             }
+         }
+     }
+ }
+```
+
+A limonádé minden esetben megkapja 'cold' effekt paramétert.
+Ha ez mellé be van kapcsolva a hozzávalóktól való öröklés, akkor az hozzáadódik:
+
+Örökölt és fix info adatok:
+
+```lua
+info = {
+    effects = { 'shake', 'blur', 'cold' },
+    contain = 'crack'
+}
+```
+
+- **készítő adatai**
+
+```lua
+Config.creatorData = true
+```
+egyedi(UNIQUE) és fegyver típusú tárgyakhoz, hozzáadódnak a készítő adatai.
+A fenti példát kibővítve az eredmény:
+
+```lua
+info = {
+    effects = { 'shake', 'blur', 'cold' },
+    contain = 'crack',
+    creator = {
+        citizenid = 'AFG05790',
+        charName = 'Roy Tucker',
+        name = 'Ekhion'
+    }
+}
+```
 
 ### Exkluzív beállítás
 - foglalkozás(job) és csoport(gang) ömlesztve megadható

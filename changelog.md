@@ -1,3 +1,13 @@
+1.4
+- add 'Info' data to the product (Similarly as a serial number of a weapon)
+- inherit the 'Info' data of the ingredients to the crafted product (e.g.: boost, poison, effect in 'Info' data etc...)
+- added creator data to product info (only UNIQUE items)
+
+Config file changes:
+```lua
+Config.creatorData = true
+```
+
 1.3.1
 - object placement enlarged customization
 
@@ -15,7 +25,7 @@ Config.workstations = {
             offset = vector3(0, 0, 0) -- shift on x, y, z axis (optional)
         }
     }    
-} 
+}
 ```
 
 1.3
@@ -25,7 +35,7 @@ Config.workstations = {
 - 'Config.inMarkerDistance' has been eliminated, the 'actionDistance' added to the Config.workstations
 
 Config file changes:
-- Added ranks
+- added ranks
 - 'Config.inMarkerDistance' relocated Config.workstations -> actionDistance
 
 1.2.1
@@ -66,5 +76,5 @@ Config.displayComponent = {
 ```
 
 1.1
-- Statistics panel: Only show exists proficiency data. Affected files: html/js/view.js, libs/functions.lua
+- statistics panel: Only show exists proficiency data. Affected files: html/js/view.js, libs/functions.lua
 - remove escrow client/workplace.lua

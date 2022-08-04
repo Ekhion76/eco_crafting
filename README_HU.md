@@ -7,6 +7,8 @@
 
 [DISCORD](https://discord.gg/4arG5sEpqw)
 
+[CFX FORUM](https://forum.cfx.re/t/paid-qbcore-eco-crafting/4878303)
+
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting1.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting2.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)

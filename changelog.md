@@ -1,3 +1,9 @@
+1.4.1
+- Added 1 new params in fxmanifest file: 'core_name'. Use only if you modified QBCore and do not use the default core name
+- Added 2 new params in config file: 'versionCheck' and 'consoleReport'
+- Added object model verification (IsModelInCdimage('model'))
+
+
 1.4
 - add 'Info' data to the product (Similarly as a serial number of a weapon)
 - inherit the 'Info' data of the ingredients to the crafted product (e.g.: boost, poison, effect in 'Info' data etc...)

@@ -1,3 +1,7 @@
+1.4.2
+- ingredients info function bugfix
+- unlocking the encryption of functions.lua
+
 1.4.1
 - Added 1 new params in fxmanifest file: 'core_name'. Use only if you modified QBCore and do not use the default core name
 - Added 2 new params in config file: 'versionCheck' and 'consoleReport'

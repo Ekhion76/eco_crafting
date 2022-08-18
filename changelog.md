@@ -1,3 +1,6 @@
+1.4.3
+- user interface duplicate text bug fix (affected only client.lua)
+
 1.4.2
 - ingredients info function bugfix
 - unlocking the encryption of functions.lua

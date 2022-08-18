@@ -1,5 +1,5 @@
 1.4.3
-- user interface duplicate text bug fix (affected only client.lua)
+- user interface text repetition bug fix. Affected client.lua + fxmanifest.lua (version number)
 
 1.4.2
 - ingredients info function bugfix

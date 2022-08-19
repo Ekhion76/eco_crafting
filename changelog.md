@@ -1,3 +1,6 @@
+1.4.4
+- will unload the last used recipe when you change workplace. Affected all js file client.lua + fxmanifest.lua (version number)
+
 1.4.3
 - user interface text repetition bug fix. Affected client.lua + fxmanifest.lua (version number)
 

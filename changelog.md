@@ -5,7 +5,6 @@
 config.lua (added Config.maxInventoryWeight = 120000, Config.maxInventorySlots = 41)
 client/main.lua, 
 server/main.lua, 
-libs/main.lua, 
 libs/functions.lua
 
 1.4.5

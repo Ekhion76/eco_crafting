@@ -1,9 +1,19 @@
+1.5
+- adapt to August 19, 2022 QBCore changes (modify inventory, player, config structure)
+- it works with the old and new qb-core version
+- affected files: 
+config.lua (added Config.maxInventoryWeight = 120000, Config.maxInventorySlots = 41)
+client/main.lua, 
+server/main.lua, 
+libs/main.lua, 
+libs/functions.lua
+
 1.4.5
 - math.randomseed error fixed (functions.lua -> draw())
-- recipe unload rework. Buttons reset and unload last recipe all nui open. (client.lua, app.js, view.js)
+- recipe unload rework. Buttons reset and unload last recipe all nui open. (client/main.lua, app.js, view.js)
 
 1.4.4
-- will unload the last used recipe when you change workplace. Affected all js file, client.lua, fxmanifest.lua (version number)
+- will unload the last used recipe when you change workplace. Affected all js file, client/main.lua, fxmanifest.lua (version number)
 
 1.4.3
 - user interface text repetition bug fix. Affected client.lua, fxmanifest.lua (version number)
@@ -16,7 +26,6 @@
 - Added 1 new params in fxmanifest file: 'core_name'. Use only if you modified QBCore and do not use the default core name
 - Added 2 new params in config file: 'versionCheck' and 'consoleReport'
 - Added object model verification (IsModelInCdimage('model'))
-
 
 1.4
 - add 'Info' data to the product (Similarly as a serial number of a weapon)

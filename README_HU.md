@@ -16,8 +16,24 @@
 
 ### Jellemzők
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
+
+- Hordozható munkahelyek (2.0 verziótól)
+    - Bárhol felállítható egy asztal vagy meggyújtható egy tábortűz
+    - Beépített tárgy lehelyező funkció. Az asztal forgatható, pontos pozícióra helyezhető.
+    - Az inventory-ból használt tárggyal létrehozható a munkahely, amit siker esetén elvesz
+    - Az eltávolító játékos megkapja a tárgyat az inventory-ba
+    - Testreszabható, hogy ki távolíthatja el (bárki, tulaj, admin, rendőr, tulajdonos job, tulajdonos gang)
+    - Korlátozható a létrehozható munkahelyek száma
+    - Kijelölhető tiltott körzetek, ahol nem lehet mobil munkahelyet elhelyezni
+    - Segítség a fejlesztőknek: tiltott területek láthatóvá tehetők
+    - Segítség a fejlesztőknek: a lehelyezett asztalok modeljét és pozícióját vágólapra másolja
+    - Exportok: létrehozáshoz, eltávolításhoz és információ lekéréshez
+    - Discord log
+    - A hordozható munkahelyek nincsenek adatbázisban tárolva, ezért szkript vagy szerver újraindítás esetén eltünnek!
+    
 - Receptek
     - Keresés a receptek között
+    - Fontos! Egy tárgyat csak egy szakma gyárthat és csak egy receptet lehet hozzárendelni
     - Könnyen átlátható, egymásra épülő, több lépcsős receptek 
     - Testreszabhatóság, foglalkozás(ok)tól függő használhatóság vagy tiltás, speciális munkahelyhez kötés
     - Beárazható, a termékek gyártása pénzbe is kerülhet.
@@ -245,7 +261,7 @@ Alapértelmezett recept értékek:
     exclusive = nil
     excluding = nil
     infoInherit = nil
-    info = nil
+    info = {}
         
 ### Info (meta) adatok beállítása
 FONTOS: Ha a tárgy 'info' adatokat kap, nem szabad halmozni(stack), 
@@ -462,6 +478,14 @@ Config.workstations = {
 A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely exkluzív, vagy az illető ki van zárva! 
 Jelzés(marker) nem lesz látható és interakciót sem tud kezdeményezni.
 
+###Hordozható munkahelyek (2.0 verziótól)
+Használatához létre kell hozni új használható tárgyakat, ehhez pár példát találsz a QBCore_addition mappában.
+A munkahelyek paraméterezése megegyezik a config fájlban lévőkkel és ugyan úgy is viselkednek.
+Ezekre példát találsz a server/usableitem.lua fájlban.
+
+A játékosok az asztalokat, tetszés szerint forgathatják, beállíthatják helyzetüket pontosan a beépített tárgy lehelyező funkciónak köszönhetően.
+
+Az exportok használatáról a export_examples.md fájlban találsz információt.
 
 ### Ablak mérete
 A grafikus felületet a html/main.css fájl elején található, '--html-font-size' érték átírásával lehet méretezni:
@@ -522,6 +546,11 @@ exports['eco_crafting']:removeProficiency((xPlayer or serverId), 'proficiency', 
 
 exports['eco_crafting']:getLabor((xPlayer or serverId))
 exports['eco_crafting']:getProficiency((xPlayer or serverId))
+
+
+exports['eco_crafting']:addPortableWorkstation(workstationData, usableItemName, ownerId)
+exports['eco_crafting']:removePortableWorkstation(workstationId, requesterId)
+exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Telepítés
@@ -555,6 +584,7 @@ Lásd a QBCore_addition mappa tartalmát. Ikonok és leírás mellékelve!
 Működésükhöz a **/qb-core/shared/items.lua** fájlban létre kell hozni a tárgyakat.
 Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
 
+- Hordozható munkahelyek(asztal, tábortűz, stb...)
 - Receptkönyv (recipe_collection)
 - Munkapont növelő +1000 pont (labor_enhancer)
 - Jártasság növelő +1000 pont (weaponry_enhancer) -- példa(nem ajánlott)

@@ -40,46 +40,39 @@ Config.laborIncrease = 10 -- Every increaseTime minutes grow so much
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.debugPoly = false -- Default false
 
+Config.keyBind = { -- Default RegisterKeyMapping (if useTarget = false)
+    openCraft = 'E', -- Open Craft Interface
+    removePortableWS = 'U' -- Remove portable workstation
+}
+
 -- ECO LOGGER
 Config.discordbotName = 'ECOBOT'
 Config.discordWebhook = {
     -- crafting = 'https://discord.com/api/webhooks/...', -- All crafting
     -- labor = 'https://discord.com/api/webhooks/...', -- Bigger increase or labor_enhancer item
+    -- portable = 'https://discord.com/api/webhooks/...', -- Log the portable workstation add/remove
 }
 
 -- add creator data (citizenid, charName, name) to product info (ONLY UNIQUE items)
 Config.creatorData = true
 
-Config.blips = {
-    {
-        name = 'Foundry',
-        coord = vector3(1110.3, -2008.43, 30.71);
-        sprite = 537,
-        color = 42,
-        scale = 0.9
-    },
-    {
-        name = 'Craft In Park',
-        coord = vector3(226.64, -890.39, 30.69);
-        sprite = 537,
-        color = 42,
-        scale = 0.9
-    }
-}
-
-
 -- PORTABLE WORKSTATIONS
-Config.workstationPlacementTime = 10 -- in sec
-Config.workstationRemovalTime = 10 -- in sec
+Config.workstationPlacementTime = 15 -- in sec
+Config.workstationRemovalTime = 15 -- in sec
 
 Config.workstationPlacementLimit = 1 -- number of workstations that can be placed by a player at the same time (does not apply to admins)
 
-Config.workstationRemoveCommand = 'workstationremoval' -- deletes the nearby workstation default: 'workstationremoval'(only admins)
+Config.workstationRemoveCommand = 'workstationremoval' -- deletes the nearby workstation default: 'workstationremoval'(only admin)
 Config.workstationRemoveAdminGroup = 'god' -- default god
 
+Config.showRestrictedAreaCommand = 'showrestricted' -- visually displays restricted areas: 'showrestricted'(only admin)
+Config.showRestrictedAreaAdminGroup = 'god' -- default god
+
+Config.copyingPortableDataToClipboard = true -- if you are an admin and you place a table, then data will be copied to the clipboard
+
 Config.canRemove = {     -- admins can use the remove command
-    everybody = false,   -- everyone can remove the other settings are ignored
-    ownerJob = false,     -- if the job is the same as the owner's
+    everybody = true,    -- everyone can remove the other settings are ignored
+    ownerJob = false,    -- if the job is the same as the owner's
     ownerGang = false,   -- if the gang is the same as the owner's
     supervisoryJobs = {  -- these workers always
         'police', 'sheriff'

@@ -9,14 +9,34 @@
 
 [CFX FORUM](https://forum.cfx.re/t/paid-qbcore-eco-crafting/4878303)
 
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/portable_workstation.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting6.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)
 
+#Portable workstations (from version 2.0)
+
 ### Features
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
+
+- Portable workstations (from version 2.0)
+    - You can set up a table or light a campfire anywhere
+    - Built-in object placement function. The table can be rotated and placed in an exact position.
+    - The workplace can be created with the item used from the inventory, which is lost on success
+    - The removing player gets the item in the inventory
+    - You can customize who can remove it (anyone, owner, admin, police, owner job, owner gang)
+    - The number of workstations that can be created can be limited
+    - Restricted areas can be designated where portable workplaces cannot be placed
+    - Developer help: Restricted areas can be made visible (commands in config file)
+    - Developer help: Copies the model and position of the placed workstation to the clipboard
+    - Exports: for creating, removing and to request information
+    - Discord log
+    - Important! Portable workplaces are not stored in a database, so they disappear when the script or server is restarted!
+    
 - Recipes
     - Search in recipes
+    - Important! An item can only be produced by one profession and only one recipe can be assigned
     - Easy to understand, recipes are built on each other, you can go step by step
     - The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
 	- Prices can be set, the production process can cost money.
@@ -238,7 +258,7 @@ Default recipe values:
     exclusive = nil
     excluding = nil
     infoInherit = nil
-    info = nil
+    info = {}
          
 ### 'Info'(meta) data settings
 **IMPORTANT:** If the object receives 'info' data, you should not stack.
@@ -458,6 +478,15 @@ Config.workstations = {
 **Side note:** 
 All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
 
+###Portable workstations (from version 2.0)
+To use it, you need to create new usable items, you can find some examples for this in the QBCore_addition folder.
+The parameters of the workstations are the same as those in the config file and they behave the same way.
+You can find an example of these in the server/usableitem.lua file.
+
+Players can rotate the tables as they wish and adjust their position precisely thanks to the built-in object placement function.
+
+You can find information about the use of exports in the export_examples.md file
+
 ### GRAPHICS UI SIZING
 The graphics interface can be scaled at the beginning of the html/main.css file by rewriting '--html-font-size' value:
 
@@ -517,6 +546,11 @@ exports['eco_crafting']:removeProficiency((xPlayer or serverId), 'proficiency', 
 
 exports['eco_crafting']:getLabor((xPlayer or serverId))
 exports['eco_crafting']:getProficiency((xPlayer or serverId))
+
+
+exports['eco_crafting']:addPortableWorkstation(workstationData, usableItemName, ownerId)
+exports['eco_crafting']:removePortableWorkstation(workstationId, requesterId)
+exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Install
@@ -549,6 +583,7 @@ See the QBCore_addition folder. Icons and readme attached.
 To make them work create the items in the  **/qb-core/shared/items.lua** file
 Copy the icons to the inventory folder **qb-inventory/html/images/** 
 
+- Portable workplaces (table, campfire, etc.)
 - Recipe book (recipe_collection)
 - Labor point increase +1000 point (labor_enhancer)
 - Proficiency point increase +1000 point (weaponry_enhancer) 

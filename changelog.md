@@ -1,3 +1,12 @@
+2.0
+- Added workstation add/remove function + usable items
+- Added workstation add/remove exports
+- Added object placer function
+- Config file split: craftdata, blips, workstations, ranks, were placed in a separate file
+- Added remove money reason
+- Added export_examples.md file
+- Added portable workstation discord log
+
 1.5
 - adapt to August 19, 2022 QBCore changes (modify inventory, player, config structure)
 - it works with the old and new qb-core version

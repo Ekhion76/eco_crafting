@@ -1,3 +1,8 @@
+2.1
+- saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
+- the extent of the OFFLINE labor increase can be adjusted or turned off
+- two event triggers can be caught in the event of successful table placement or removal
+
 2.0
 - Added workstation add/remove function + usable items
 - Added workstation add/remove exports

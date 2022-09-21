@@ -34,8 +34,10 @@ Config.defaultLabor = 1000 -- Default labor for new players
 Config.laborCap = 5000 -- Max labor points
 Config.proficiencyCap = 120000 -- if the not set ranks (Max proficiency points)
 
+
 Config.laborIncreaseTime = 5 -- Default 5 (min), if 0 then turn off automatic labor
 Config.laborIncrease = 10 -- Every increaseTime minutes grow so much
+Config.laborIncreaseOffline = 10 -- Every increaseTime minutes grow so much, if 0 then turn off automatic OFFLINE labor
 
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.debugPoly = false -- Default false
@@ -57,9 +59,10 @@ Config.discordWebhook = {
 Config.creatorData = true
 
 -- PORTABLE WORKSTATIONS
+Config.savePortableWorkstations = true -- Placed portable workstations are saved and loaded when server or script is restarted
+
 Config.workstationPlacementTime = 15 -- in sec
 Config.workstationRemovalTime = 15 -- in sec
-
 Config.workstationPlacementLimit = 1 -- number of workstations that can be placed by a player at the same time (does not apply to admins)
 
 Config.workstationRemoveCommand = 'workstationremoval' -- deletes the nearby workstation default: 'workstationremoval'(only admin)

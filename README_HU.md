@@ -31,7 +31,7 @@
     - Segítség a fejlesztőknek: a lehelyezett asztalok modeljét és pozícióját vágólapra másolja
     - Exportok: létrehozáshoz, eltávolításhoz és információ lekéréshez
     - Discord log
-    - A hordozható munkahelyek nincsenek adatbázisban tárolva, ezért szkript vagy szerver újraindítás esetén eltünnek!
+    - 2.1 Verziótól A hordozható munkahelyek tárolhatók így szkript vagy szerver újraindítás esetén is megmaradnak
     
 - Receptek
     - Keresés a receptek között
@@ -488,6 +488,11 @@ Ezekre példát találsz a server/usableitem.lua fájlban.
 A játékosok az asztalokat, tetszés szerint forgathatják, beállíthatják helyzetüket pontosan a beépített tárgy lehelyező funkciónak köszönhetően.
 
 Az exportok használatáról a export_examples.md fájlban találsz információt.
+
+A hordozható munkahelyeket a szkript fájlba menti. 
+A mentést a config fájlban ki lehet kapcsolni.
+A save.lua nincs titkosítva, ezért lehetőség van saját mentési módszer kialakítására.
+
 
 ### Ablak mérete
 A grafikus felületet a html/main.css fájl elején található, '--html-font-size' érték átírásával lehet méretezni:

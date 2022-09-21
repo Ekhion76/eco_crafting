@@ -13,7 +13,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/portable_workstation.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting6.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
-![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.png)
 
 #Portable workstations (from version 2.0)
 
@@ -32,7 +32,7 @@
     - Developer help: Copies the model and position of the placed workstation to the clipboard
     - Exports: for creating, removing and to request information
     - Discord log
-    - Important! Portable workplaces are not stored in a database, so they disappear when the script or server is restarted!
+    - Important! 2.1 version: saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
     
 - Recipes
     - Search in recipes
@@ -486,6 +486,10 @@ You can find an example of these in the server/usableitem.lua file.
 Players can rotate the tables as they wish and adjust their position precisely thanks to the built-in object placement function.
 
 You can find information about the use of exports in the export_examples.md file
+
+Saves portable workstations to the script file.
+Saving can be turned off in the config file.
+save.lua is not encrypted, so you can create your own save method.
 
 ### GRAPHICS UI SIZING
 The graphics interface can be scaled at the beginning of the html/main.css file by rewriting '--html-font-size' value:

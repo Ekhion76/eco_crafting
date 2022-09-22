@@ -509,7 +509,7 @@ Ha be van kapcsolva az átméretezés funkció (Config.displayComponent -> uiSiz
 a bal felső sarokban található '+ -' gombok segítségével.
 
 
-###Üzenőrendszer
+### Üzenőrendszer
 
 Állítsd be kedvenc üzenőrendszered!
 A functions/notify.lua fájlban könnyen megváltoztatható, hogy mely rendszert használja az eco_crafting.

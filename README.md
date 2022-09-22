@@ -70,6 +70,7 @@
 - Workplaces can be given separately to jobs or gangs.
 - Effects, markers (cp), animations, tables (objects) can be set up for individual tables. You can set them up one by one
 
+- You can add your favorite notification system at libs/notify.lua
 - Target system or the regular distance settings are interchangeable as a function.
 - Multilingual
 - Discord log included

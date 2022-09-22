@@ -71,6 +71,7 @@
 - A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
 - Effekt markerek(cp), animációk, asztalok(objektumok), minden munkahelyhez egyedileg állíthatók
 
+- Többféle üzenőrendszer használható
 - Target rendszer / hagyományos közelség érzékelés választható
 - Többnyelvűség támogatás
 - Discordon vezetett eseménynapló
@@ -506,6 +507,22 @@ A grafikus felületet a html/main.css fájl elején található, '--html-font-si
 
 Ha be van kapcsolva az átméretezés funkció (Config.displayComponent -> uiSizeBtn = true), akkor a felhasználó egyénileg is méretezheti a felületet
 a bal felső sarokban található '+ -' gombok segítségével.
+
+
+###Üzenőrendszer
+
+Állítsd be kedvenc üzenőrendszered!
+A functions/notify.lua fájlban könnyen megváltoztatható, hogy mely rendszert használja az eco_crafting.
+A régebbi rendszerek még nem támogatják a DrawText üzenethívást, ami már nem okozhat gondot, mert a functions/notify.lua-ban 
+beállítható bármilyen helyettesítő!
+Például.:
+```lua
+
+function interface.client.drawText (message, position) -- Persistent message e.g.: 'Use Cooking workstation: E'
+
+    TriggerEvent('qb-core:client:DrawText', message, position) -- CHANGE ME
+end
+```
 
 ### Blippek
 A blippeket a konfigurációs fájlban manuálisan kell beállítani, mert: 

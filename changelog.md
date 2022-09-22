@@ -1,3 +1,6 @@
+2.2
+- You can add your favorite notification system at libs/notify.lua
+
 2.1
 - saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
 - the extent of the OFFLINE labor increase can be adjusted or turned off

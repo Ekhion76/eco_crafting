@@ -505,6 +505,22 @@ The graphics interface can be scaled at the beginning of the html/main.css file 
 If the resize function is turned on (Config.displayComponent -> uiSizeBtn = true), the user can size the interface individually
 using the '+ -' buttons in the upper left corner.
 
+### Notify
+Add your favorite messaging system
+
+In the functions/notify.lua file, it is easy to change which notification system eco_crafting uses.
+Older systems do not yet support the DrawText message call, which should no longer be a problem, because in functions/notify.lua
+any substitute can be set!
+
+e.g:
+```lua
+
+function interface.client.drawText (message, position) -- Persistent message e.g.: 'Use Cooking workstation: E'
+
+    TriggerEvent('qb-core:client:DrawText', message, position) -- CHANGE ME
+end
+```
+
 ### Blips
 The blips can be set manually in the configuration file because:
 

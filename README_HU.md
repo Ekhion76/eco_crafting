@@ -393,6 +393,39 @@ Config.craftData = {
  }
 ```
 
+### ACE permissions
+FiveM ACE permissions beállítható a receptek, munkahelyek és a hordozható munkahelyek használhatóságának szabályzásához. Például:
+
+```lua
+Config.craftData = {
+    foundry = { 
+         steel = {
+             -- ...
+             requiredAcePermission = 'vip_gold' 
+         }
+     }
+ }
+```
+
+A requiredAcePermission teljesülése önmagában még nem garantálja a hozzáférést a munkahelyhez vagy recepthez. 
+Ha be van állítva exclusive vagy excluding feltétel, annak is meg kell feleni.
+
+Egy recepthez vagy munkahelyhez csak egy requiredAcePermission állítható be.
+
+Az eco crafting, közvetlenül nem kommunikál a Discorddal.
+A Discord API-k képesek kezelni a FiveM ACE permissionokat.
+
+
+Ha egy játékos ACE permission-ja módosul, például a Discord API ad vagy elvesz tőle jogokat,
+akkor a szerver oldalon meg kell hívni az 'eco_crafting:acePermissionUpdate' eseménykezelőt, 
+hogy az eco_crafting az új jogokat vegye figyelembe.
+
+```lua
+
+    TriggerEvent('eco_crafting:acePermissionUpdate', 'targetPlayerServerId') -- only serverSide
+```
+
+
 ### Munkahelyek
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
 A receptekhez hasonlóan a munkahelyeket is lehet exkluzívvá vagy csoportok számára kizárttá tenni.

@@ -1,3 +1,6 @@
+2.3
+- you can also use ace permission to access recipes, workbenches and portable workbenches
+
 2.2
 - You can add your favorite notification system at libs/notify.lua
 

@@ -395,6 +395,37 @@ Config.craftData = {
  }
 ```
 
+### ACE permissions
+FiveM ACE permissions can be set to control the usability of recipes, workplaces and portable workplaces. For example:
+
+```lua
+Config.craftData = {
+    foundry = { 
+         steel = {
+             -- ...
+             requiredAcePermission = 'vip_gold' 
+         }
+     }
+ }
+```
+
+Fulfillment of requiredAcePermission alone does not guarantee access to the workplace or recipe.
+If an exclusive or excluding condition is set, it must also be met.
+
+Only one requiredAcePermission can be set per recipe or workplace.
+
+Eco crafting does not communicate directly with Discord.
+Discord APIs can handle FiveM ACE permissions.
+
+If a player ACE permission changed, for example the Discord API gives or takes away ACE permissions from them,
+then the 'eco_crafting:acePermissionUpdate' event handler must be called on the server side,
+for eco_crafting to take into account the new ACE permissions.
+
+```lua
+
+    TriggerEvent('eco_crafting:acePermissionUpdate', 'targetPlayerServerId') -- only serverSide
+```
+
 ### Workstands
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
 Workplaces like recipes can be exclusive for different jobs/gangs.

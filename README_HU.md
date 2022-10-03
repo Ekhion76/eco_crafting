@@ -159,6 +159,32 @@ Példa a számításra:
 
 Famed szinten a kedvezmény 40%, tehát 100 labor lecsökken 60-ra.
 
+Ha nem kellenek a rangok, akkor a config/ranks.lua -ban állíts be üres táblát:
+
+```lua
+    Config.ranks = {}
+```
+
+Ebben az esetben a szakmai jártasság felső határát a config/config.lua állítja be.
+
+```lua
+    Config.proficiencyCap = 120000
+```
+
+Ha egyáltalán nem szeretnél jártasságrendszert, akkor a a config/config.lua - ban kikapcsolható:
+
+```lua
+    Config.systemMode = {
+        profession = false, -- jártasság rendszer
+        ....,    
+    } 
+```
+
+
+### Jártasság
+
+Egy tárgy elkészítése munkapontba(labor) kerül. Az elköltött munkapont növeli a szakmai jártasságot.
+
 Nem érdemes például étterem1 és étterem2 alá sorolni a recepteket, mert az két külön szakmát jelentene, 
 holott a szakács jártasságot kellene növelniük a befektetett munkapontoknak egységesen.
 
@@ -425,6 +451,27 @@ hogy az eco_crafting az új jogokat vegye figyelembe.
     TriggerEvent('eco_crafting:acePermissionUpdate', 'targetPlayerServerId') -- only serverSide
 ```
 
+Az ACE permission örökölhetnek egymástól, ezért a 'gold' jog magában tartlmazza az ezüs és bronz jogait is! Példa:
+
+```
+-- Jogok bevezetése
+add_ace group.bronzevip vip_bronze allow
+add_ace group.silvervip vip_silver allow
+add_ace group.goldvip vip_gold allow
+
+
+-- Öröklések beállítása
+add_principal group.silvervip group.bronzevip
+add_principal group.goldvip group.silvervip
+```
+
+```lua
+    requiredAcePermission = 'vip_bronze' -- Használhatja a bronz, silver és a gold jogosultságú játékos
+    requiredAcePermission = 'vip_silver' -- Használhatja a silver és a gold jogosultságú játékos
+    requiredAcePermission = 'vip_gold'   -- csak a gold jogosultságú játékos használhatja
+```
+
+
 
 ### Munkahelyek
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
@@ -514,7 +561,7 @@ Config.workstations = {
 A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely exkluzív, vagy az illető ki van zárva! 
 Jelzés(marker) nem lesz látható és interakciót sem tud kezdeményezni.
 
-###Hordozható munkahelyek (2.0 verziótól)
+### Hordozható munkahelyek (2.0 verziótól)
 Használatához létre kell hozni új használható tárgyakat, ehhez pár példát találsz a QBCore_addition mappában.
 A munkahelyek paraméterezése megegyezik a config fájlban lévőkkel és ugyan úgy is viselkednek.
 Ezekre példát találsz a server/usableitem.lua fájlban.
@@ -527,6 +574,13 @@ A hordozható munkahelyeket a szkript fájlba menti.
 A mentést a config fájlban ki lehet kapcsolni.
 A save.lua nincs titkosítva, ezért lehetőség van saját mentési módszer kialakítására.
 
+
+### Mit adhatok VIP ügyfeleknek?
+
+- Jártaságnövelő tárgyat( elhasználása növeli pl.: a weaponry jártasságot)
+- Labornövelő tárgyat( elhasználása növeli az elhasználható munkapontokat)
+- Az ACE permission kezelésnek köszönhetően saját munkáhelyet (hordozhatót is beleértve)
+- Csak általuk elérhető recepteket (pl.: Sniper, loot/lucky box, riasztó hatástalanító)
 
 ### Ablak mérete
 A grafikus felületet a html/main.css fájl elején található, '--html-font-size' érték átírásával lehet méretezni:

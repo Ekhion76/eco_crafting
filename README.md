@@ -111,7 +111,7 @@ The used labor points increases the proficiency level in the profession where yo
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
 
 ### Levels, discounts (from version 1.3)
-With increasing skills, discounts can be set.
+With increasing proficiency, discounts can be set.
 The chances of success can increase and reduce crafting time as well as price and labor costs.
 
 It is important that the discounts are not smaller than the previous level because the previous level is always given
@@ -153,6 +153,30 @@ Example of calculation:
 ```
 
 At the Famed level, the discount is 40%, so 100 labor points fall to 60.
+
+If you don't need ranks, set an empty table in config/ranks.lua:
+
+```lua
+    Config.ranks = {}
+```
+
+In this case, the upper limit of professional proficiency is set by config/config.lua.
+
+```lua
+    Config.proficiencyCap = 120000
+```
+
+If you don't want a proficiency system at all, it can be turned off in config/config.lua:
+
+```lua
+    Config.systemMode = {
+        profession = false, -- proficiency system
+        ....,    
+    } 
+```
+
+### Proficiency
+Crafting an item has a labor point cost. The work point spent increases professional proficiency.
 
 For example you have two restaurants, restaurant1 and restaurant2. If you want restaurant1 to craft items which restaurant2 should not be able to craft then you can set recipes
 to be only visible to restaurant1(as a job) or you can create special workbenches.
@@ -426,6 +450,30 @@ for eco_crafting to take into account the new ACE permissions.
     TriggerEvent('eco_crafting:acePermissionUpdate', 'targetPlayerServerId') -- only serverSide
 ```
 
+
+ACE permissions can be inherited from each other, so the 'gold' right includes the rights of silver and bronze! Example:
+
+```
+-- Creation of ACE permissions
+
+add_ace group.bronzevip vip_bronze allow
+add_ace group.silvervip vip_silver allow
+add_ace group.goldvip vip_gold allow
+
+
+-- Set inheritances
+
+add_principal group.silvervip group.bronzevip
+add_principal group.goldvip group.silvervip
+```
+
+```lua
+    requiredAcePermission = 'vip_bronze' -- it can be used by players with bronze, silver and gold rights
+    requiredAcePermission = 'vip_silver' -- it can be used by players with silver and gold privileges
+    requiredAcePermission = 'vip_gold'   -- can only be used by players with gold privileges
+```
+
+
 ### Workstands
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
 Workplaces like recipes can be exclusive for different jobs/gangs.
@@ -522,6 +570,13 @@ You can find information about the use of exports in the export_examples.md file
 Saves portable workstations to the script file.
 Saving can be turned off in the config file.
 save.lua is not encrypted, so you can create your own save method.
+
+
+### What can i give to VIP customers?
+- proficiency point increase item (using it increases e.g. weaponry proficiency) see server/usableitem.lua
+- labor point increase item (labor_enhancer) see server/usableitem.lua
+- thanks to the ACE permission management, you can have your own workplace (including a portable one)
+- recipes only available to them (e.g.: sniper, loot/lucky box, alarm neutralizer)
 
 ### GRAPHICS UI SIZING
 The graphics interface can be scaled at the beginning of the html/main.css file by rewriting '--html-font-size' value:

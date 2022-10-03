@@ -15,7 +15,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.png)
 
-#Portable workstations (from version 2.0)
+# Portable workstations (from version 2.0)
 
 ### Features
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
@@ -558,7 +558,7 @@ Config.workstations = {
 **Side note:** 
 All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
 
-###Portable workstations (from version 2.0)
+### Portable workstations (from version 2.0)
 To use it, you need to create new usable items, you can find some examples for this in the QBCore_addition folder.
 The parameters of the workstations are the same as those in the config file and they behave the same way.
 You can find an example of these in the server/usableitem.lua file.

@@ -14,7 +14,8 @@ Config.craftData = {
             info = { -- Sets the information for the product
                 param1 = 'value1',
                 param2 = 'value2'
-            }
+            },
+            requiredAcePermission = 'vip_gold',
         },
         oxy = {
             labor = 5,

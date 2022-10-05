@@ -59,7 +59,8 @@ Config.workstations = {
         --    vagos = {}, -- all ranks in a job
         --    'crips', -- all ranks in a job
         --},
-        actionDistance = 1.5 -- optional( default: 1.5 )
+        actionDistance = 1.5, -- optional( default: 1.5 )
+        requiredAcePermission = 'vip_gold',
     },
     {
         workstation = 'chemist',

@@ -568,6 +568,28 @@ Ezekre példát találsz a server/usableitem.lua fájlban.
 
 A játékosok az asztalokat, tetszés szerint forgathatják, beállíthatják helyzetüket pontosan a beépített tárgy lehelyező funkciónak köszönhetően.
 
+**Fontos:**  A 2.4 es verziótól ki lett kapcsolva az automatikus földre illesztés és be lett építve a kézi magasságállítás. 
+Erre a házilag készített ingatlanok, tereptárgyak miatt volt szükség, mert ott a gyári földreillesztés hibásan működik.
+
+Sajnos bizonyos tárgyaknál a magasság, letételnel elcsúszik a Z tengelyen. Ez az offset tulajdonsággal korrigálható.
+Ez a server/usableitem.lua - ban található.
+
+```lua
+    workstationAddRequest(source, item.name,
+        {
+            workstation = 'chemist',
+            ...,
+            object = {
+                    model = 'bkr_prop_coke_table01a',
+                    placeOnGround = false, -- !important
+                    offset = vector3(0, 0, -0.5) -- z Correction -0.5
+                },
+            ...
+        }
+    )  
+```
+
+
 Az exportok használatáról a export_examples.md fájlban találsz információt.
 
 A hordozható munkahelyeket a szkript fájlba menti. 
@@ -643,9 +665,27 @@ Config.blips = {
 
 Az aktuális inventory ikonjait használja. A konfigurációs fájlban lehet megadni az elérési útvonalat.
 ```lua
-Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
+-- See qb-core\shared\items.lua --> ['image'] = 'example.png' or ['image'] = 'images/example.png', 
+Config.imagePath = "https://cfx-nui-qb-inventory/html/images/" 
+-- Config.imagePath = "https://cfx-nui-qb-inventory/html/" 
+-- Config.imagePath = "https://cfx-nui-qs-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/" 
 ```
 
+### Client exports
+Megnyitja a craft ablakot. Csak a munkaállomás típusát szükséges megadni.
+```lua
+exports['eco_crafting']:open({
+        workstation = 'weaponry',   -- required
+        special = 'w_extend',       -- optional
+        animation = {               -- optional
+            dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
+            anim = 'machinic_loop_mechandplayer',
+            flag = 16
+        },
+    })
+```
 ### Server exports
 Külső szkriptekből lekérdezhetők, befolyásolhatók a munkapont és jártasság értékek
 ```lua

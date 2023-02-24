@@ -565,6 +565,27 @@ You can find an example of these in the server/usableitem.lua file.
 
 Players can rotate the tables as they wish and adjust their position precisely thanks to the built-in object placement function.
 
+**Important:** As of version 2.4, automatic "place on ground" is disabled and manual height adjustment is built in. 
+This was necessary because of the individual maps, because there the factory ground setting works incorrectly.
+
+Unfortunately, for certain objects, the height shifts on the Z axis when placed.
+This can be corrected in server/usableitem.lua with the offset setting.
+
+```lua
+    workstationAddRequest(source, item.name,
+        {
+            workstation = 'chemist',
+            ...,
+            object = {
+                    model = 'bkr_prop_coke_table01a',
+                    placeOnGround = false, -- !important
+                    offset = vector3(0, 0, -0.5) -- z Correction -0.5
+                },
+            ...
+        }
+    )  
+```
+
 You can find information about the use of exports in the export_examples.md file
 
 Saves portable workstations to the script file.
@@ -639,7 +660,26 @@ Config.blips = {
 
 Always uses the actual pictures from the inventory. The path can be set in the config file.
 ```lua
+-- See qb-core\shared\items.lua --> ['image'] = 'example.png' or ['image'] = 'images/example.png',
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-qb-inventory/html/" 
+-- Config.imagePath = "https://cfx-nui-qs-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/" 
+```
+
+### Client exports
+Opens the craft window. Only the workstation type needs to be entered.
+```lua
+exports['eco_crafting']:open({
+        workstation = 'weaponry',   -- required
+        special = 'w_extend',       -- optional
+        animation = {               -- optional
+            dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
+            anim = 'machinic_loop_mechandplayer',
+            flag = 16
+        },
+    })
 ```
 
 ### Server exports

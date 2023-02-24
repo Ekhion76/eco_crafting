@@ -1,8 +1,16 @@
+2.4
+- added client side export: The crafting interface can also be opened from an external script. See export_examples.md
+- added Config.workstationExpirationTime (in day). Is evaluated at script startup. Prevents portable workstations from remaining permanently installed.
+- added Config.workstationMaxCorrectionZ. The height of portable workstations is adjustable
+- added Config.canUse. The use of the portable workstation can be linked to owner, job, gang.
+- added Config.displayComponent.hideHigherProficiencyItems. It hides from the product list those items for which you do not have sufficient proficiency
+- portable.lua encryption unlocked
+
 2.3
 - you can also use ace permission to access recipes, workbenches and portable workbenches
 
 2.2
-- You can add your favorite notification system at libs/notify.lua
+- you can add your favorite notification system at libs/notify.lua
 
 2.1
 - saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
@@ -10,13 +18,13 @@
 - two event triggers can be caught in the event of successful table placement or removal
 
 2.0
-- Added workstation add/remove function + usable items
-- Added workstation add/remove exports
-- Added object placer function
-- Config file split: craftdata, blips, workstations, ranks, were placed in a separate file
-- Added remove money reason
-- Added export_examples.md file
-- Added portable workstation discord log
+- added workstation add/remove function + usable items
+- added workstation add/remove exports
+- added object placer function
+- config file split: craftdata, blips, workstations, ranks, were placed in a separate file
+- added remove money reason
+- added export_examples.md file
+- added portable workstation discord log
 
 1.5
 - adapt to August 19, 2022 QBCore changes (modify inventory, player, config structure)
@@ -42,9 +50,9 @@ libs/functions.lua
 - unlocking the encryption of functions.lua
 
 1.4.1
-- Added 1 new params in fxmanifest file: 'core_name'. Use only if you modified QBCore and do not use the default core name
-- Added 2 new params in config file: 'versionCheck' and 'consoleReport'
-- Added object model verification (IsModelInCdimage('model'))
+- added 1 new params in fxmanifest file: 'core_name'. Use only if you modified QBCore and do not use the default core name
+- added 2 new params in config file: 'versionCheck' and 'consoleReport'
+- added object model verification (IsModelInCdimage('model'))
 
 1.4
 - add 'Info' data to the product (Similarly as a serial number of a weapon)

@@ -9,7 +9,12 @@ Config.maxInventorySlots = 41 -- IMPORTANT! Used only above the 1.0.0 qb-invento
 Config.versionCheck = true
 Config.consoleReport = true -- turn on/of nui loaded, dropped recipes, no configure ranks, offline labor message
 
+-- See qb-core\shared\items.lua --> ['image'] = 'example.png' or ['image'] = 'images/example.png',
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-qb-inventory/html/"
+-- Config.imagePath = "https://cfx-nui-qs-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/images/"
+-- Config.imagePath = "https://cfx-nui-lj-inventory/html/"
 
 Config.systemMode = {
     profession = true, -- proficiency system on/off
@@ -22,7 +27,8 @@ Config.systemMode = {
 Config.displayComponent = {
     chance = true, -- show loaded recipe chance
     uiSizeBtn = true, -- show '+ -' buttons
-    professionIcon = true -- show profession icon in STATISTICS panel. (Add professionName.png to html/img folder e.g weaponry.png, cooking.png)
+    professionIcon = true, -- show profession icon in STATISTICS panel. (Add professionName.png to html/img folder e.g weaponry.png, cooking.png)
+    hideHigherProficiencyItems = true -- it hides from the product list those items for which you do not have sufficient proficiency
 }
 
 Config.currency = {
@@ -36,8 +42,8 @@ Config.proficiencyCap = 120000 -- if the not set ranks (Max proficiency points)
 
 
 Config.laborIncreaseTime = 5 -- Default 5 (min), if 0 then turn off automatic labor
-Config.laborIncrease = 10 -- Every increaseTime minutes grow so much
-Config.laborIncreaseOffline = 10 -- Every increaseTime minutes grow so much, if 0 then turn off automatic OFFLINE labor
+Config.laborIncrease = 10 -- Default 10 (min) Every increaseTime minutes grow so much
+Config.laborIncreaseOffline = 10 -- Default 10 (min) Every increaseTime minutes grow so much, if 0 then turn off automatic OFFLINE labor
 
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true'
 Config.debugPoly = false -- Default false
@@ -55,14 +61,16 @@ Config.discordWebhook = {
     -- portable = 'https://discord.com/api/webhooks/...', -- Log the portable workstation add/remove
 }
 
--- add creator data (citizenid, charName, name) to product info (ONLY UNIQUE items)
+-- add creator(crafter) data (citizenid, charName, name) to product info (ONLY UNIQUE items)
 Config.creatorData = true
 
 -- PORTABLE WORKSTATIONS
 Config.savePortableWorkstations = true -- Placed portable workstations are saved and loaded when server or script is restarted
 
-Config.workstationPlacementTime = 15 -- in sec
-Config.workstationRemovalTime = 15 -- in sec
+Config.workstationMaxCorrectionZ = 0.5 -- Default: 0.5 maximum height adjustment when placing a portable workstation
+Config.workstationExpirationTime = 7 -- Default: 7(day)- is evaluated at script startup, if 0 then turn off
+Config.workstationPlacementTime = 15 -- Default: 15(sec)
+Config.workstationRemovalTime = 15 -- Default: 15(sec)
 Config.workstationPlacementLimit = 1 -- number of workstations that can be placed by a player at the same time (does not apply to admins)
 
 Config.workstationRemoveCommand = 'workstationremoval' -- deletes the nearby workstation default: 'workstationremoval'(only admin)
@@ -73,6 +81,7 @@ Config.showRestrictedAreaAdminGroup = 'god' -- default god
 
 Config.copyingPortableDataToClipboard = true -- if you are an admin and you place a table, then data will be copied to the clipboard
 
+-- if you set everything to false, only the owner and admin can remove it (this only applies to portable workstations)
 Config.canRemove = {     -- admins can use the remove command
     everybody = true,    -- everyone can remove the other settings are ignored
     ownerJob = false,    -- if the job is the same as the owner's
@@ -80,4 +89,11 @@ Config.canRemove = {     -- admins can use the remove command
     supervisoryJobs = {  -- these workers always
         'police', 'sheriff'
     }
+}
+
+-- if you set everything to false, only the owner can use it (this only applies to portable workstations)
+Config.canUse = {        -- admins can use the remove command
+    everybody = true,    -- everyone can remove the other settings are ignored
+    ownerJob = false,    -- if the job is the same as the owner's
+    ownerGang = false,   -- if the gang is the same as the owner's
 }

@@ -30,7 +30,7 @@
 - Blueprints (learnable blueprints)
 - Multiple recipes can be added to an item
 - Several professions and specialties can be linked to one workplace
-- During the creation of the object, a side product can be created
+- During the creation of the item, a side product can be created
 
 
 ### Features

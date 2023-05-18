@@ -1,5 +1,7 @@
 # ECO CRAFTING
-## FiveM QBCore Crafting script
+## FiveM ESX / QBCore / CustomCore Crafting script (standalone with the free and open source e_core)
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting_3.0_1.jpg)
 
 [![promo_video](https://img.youtube.com/vi/S94VstZLWlQ/0.jpg)](https://www.youtube.com/watch?v=S94VstZLWlQ)
 
@@ -15,12 +17,24 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.png)
 
-# Portable workstations (from version 2.0)
+### ECO CRAFTING V2
+- Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
+- Dependency: e_core ([Github](https://github.com/Ekhion76/e_core))
+
+## News / changes
+- ATTENTION! It is necessary to install e_core before crafting!
+- The Tebexes download includes the previous version 2.4 (only QBCore) and the new version 3.0 (3.0 standalone + e_core) for now!
+- ATTENTION! The new (3.0)version is not compatible with the old one! (Structural modifications were necessary for independence)
+- Introduction of e_core dependency due to framework/inventory independence ESX/QBCore (this is a separate free script: https://github.com/Ekhion76/e_core)
+- New design
+- Blueprints (learnable blueprints)
+- Multiple recipes can be added to an item
+- Several professions and specialties can be linked to one workplace
+- During the creation of the object, a side product can be created
+
 
 ### Features
-- Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
-
-- Portable workstations (from version 2.0)
+- Portable workstations
     - You can set up a table or light a campfire anywhere
     - Built-in object placement function. The table can be rotated and placed in an exact position.
     - The workplace can be created with the item used from the inventory, which is lost on success
@@ -32,39 +46,38 @@
     - Developer help: Copies the model and position of the placed workstation to the clipboard
     - Exports: for creating, removing and to request information
     - Discord log
-    - Important! 2.1 version: saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
+    - Saves portable tables, they remain even when the server or script is restarted ( can be set in the config file )
     
 - Recipes
     - Search in recipes
-    - Important! An item can only be produced by one profession and only one recipe can be assigned
     - Easy to understand, recipes are built on each other, you can go step by step
     - The recipes can be adjusted to your needs. (jobs can have their on recipes and other players won't be able to see them, you can also block recipes, you can have "special recipes")
 	- Prices can be set, the production process can cost money.
     - Recipe book
 
-- Labor point system (optional)
+- Labor point system (optional) (e_core)
     - Each time when you craft you will need labor points.
     - The used labor points will increase your proficiency level in the category you crafted items.
     - "Labor point" item. (An item what gives you labor points, can be given as a present to your players or can be bought)
 
-- Proficiency system (optional)
+- Proficiency system (optional) (e_core)
     - Proficiency statistics panel
     - "Proficiency point" item. (An item what gives you proficiency points, can be given as a present to your players or can be bought)
 
-- Chance system (from version 1.2)
+- Chance system
     - For every recipe, you can set a success chance
     
-- Custom scalable user interface (from version 1.2)
+- Custom scalable user interface
     - The user interface is adjusted to the size of the game window, but it is also possible to adjust the size with '+ -' buttons
     
-- Remaining Ingredients (from version 1.2)
+- Remaining Ingredients
     - The ingredients marked with the recipes (- with signs) are not taken away by the system
     
-- Level system (from version 1.3)
+- Level system (e_core)
     - Can be determined by level as a percentage of benefits
     - Discounts can be applied to the 4 items below: chance, price, time, labor
     
-- Adding 'Info' data to the crafted product and inheritance from ingredients (Similarly as a serial number of a weapon)
+- Adding 'Info / meta' data to the crafted product (Similarly as a serial number of a weapon)
 
 - You can move the whole UI around your screen
 - Workplaces can be given separately to jobs or gangs.
@@ -82,12 +95,14 @@ Function settings:
 You have the option to turn on and off different functions such as the money, profession and labor point systems to suit your needs.
 If the labor point system is turned off, the profesions system automatically turns off as well!
 
+These settings can be switched centrally in e_core!
+
 ```lua
 Config.systemMode = {
     profession = true, -- proficiency system on/off
     labor = false, -- If you turn off the lab, the profession system will automatically turn off
     money = false, -- Money condition on/off
-    chance = true -- To take into account chances of success (from version 1.2)
+    chance = true -- To take into account chances of success
 }
 ```
 
@@ -110,7 +125,7 @@ The used labor points increases the proficiency level in the profession where yo
 
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/proficiency.jpg)
 
-### Levels, discounts (from version 1.3)
+### Levels, discounts
 With increasing proficiency, discounts can be set.
 The chances of success can increase and reduce crafting time as well as price and labor costs.
 
@@ -160,13 +175,13 @@ If you don't need ranks, set an empty table in config/ranks.lua:
     Config.ranks = {}
 ```
 
-In this case, the upper limit of professional proficiency is set by config/config.lua.
+In this case, the upper limit of professional proficiency is set by config/main.lua.
 
 ```lua
     Config.proficiencyCap = 120000
 ```
 
-If you don't want a proficiency system at all, it can be turned off in config/config.lua:
+If you don't want a proficiency system at all, it can be turned off in config/main.lua:
 
 ```lua
     Config.systemMode = {
@@ -184,51 +199,65 @@ to be only visible to restaurant1(as a job) or you can create special workbenche
 Here is an example how you can set recipes for two different restaurants in cooking profession:
 
 ```lua
-Config.craftData = {
-    cooking = {
-        tosti = { -- everybody can craft it on your server, at every 'cooking' workstand
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0
+Config.recipes = {
+    {
+        name = 'tosti', -- everybody can craft it on your server, at every 'cooking' workstand
+        labor = 10,
+        ingredients = {
+                         { name = 'item1', amount = 1, remove = true },
+                         { name = 'item2', amount = 1, remove = true },
+                     },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0
+    },
+    {
+        name = 'twerks_candy', -- everybody can craft it on your server, but only in a speacial 'tacoBomb' workplace
+        labor = 10,
+        ingredients = {
+                         { name = 'item1', amount = 1, remove = true },
+                         { name = 'item2', amount = 1, remove = true },
+                     },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        special = { 'tacoBomb' }
+    },
+    {
+        name = 'snikkel_candy', -- only the defined job and on a special 'hookies' workplace 
+        labor = 10,
+        ingredients = {
+                         { name = 'item1', amount = 1, remove = true },
+                         { name = 'item2', amount = 1, remove = true },
+                     },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        whitelist = {
+            mechanic = { 0, 1 }, -- selected ranks in a job (optional)
+            vagos = {}, -- all ranks in a job
+            'crips', -- all ranks in a job
         },
-        twerks_candy = { -- everybody can craft it on your server, but only in a speacial 'tacoBomb' workplace
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            special = 'tacoBomb'
-        },
-        snikkel_candy = { -- only the defined job and on a special 'hookies' workplace 
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            exclusive = {
-                mechanic = { 0, 1 }, -- selected ranks in a job (optional)
-                vagos = {}, -- all ranks in a job
-                'crips', -- all ranks in a job
-            },
-            special = 'hookies'
-        },
-        sandwich = { -- everybody can craft it except police and ambulance
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            excluding = {
-                "police",
-                "ambulance"
-            }
-        },
+        special = { 'hookies' }
+    },
+    {
+        name = 'sandwich', -- everybody can craft it except police and ambulance
+        labor = 10,
+        ingredients = {
+                       { name = 'item1', amount = 1, remove = true },
+                       { name = 'item2', amount = 1, remove = true },
+                   },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        blacklist = {
+            "police",
+            "ambulance"
+        }
     }
 }
 ```
@@ -236,140 +265,98 @@ Config.craftData = {
 ### Recipe structure
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
 ```lua
-Config.craftData = {
-    foundry = {
+Config.recipes = {
+    {
     
         -- Basic recipe. Yes, that's all, the rest of the default gets value!
+        name = 'aluminum', -- item what you can create
+        ingredients = {
+                         { name = 'aluminumoxide', amount = 3, remove = true }, -- required
+                     },
+    },
         
-        aluminum = { -- item what you can create
-            ingredients = { aluminumoxide = 3 } -- required
+    {   -- Fully optimized recipe
+        name = 'pistol', 
+        labor = 5, -- labor point (optional) 
+        ingredients = {
+                         { name = 'steel', amount = 1, remove = true },
+                         { name = 'hammer', amount = 1, remove = false }, -- remove = false are not taken away by the system
+                     },
+        blueprints = {
+                    { name = 'blueprint_pistol', knowledge = 'pistol' }, -- need create blueprint_pistol item and add usableitems (see: server/usableitem.lua)
+                },
+        sideProducts = { -- besides the main product, these items are also created with a given chance
+                    { name = 'random_item', amount = 1, chance = 40, metadata = {} },
+                },
+        time = 3,   -- needed time to create the item (optional)
+        amount = 2, -- ammount of items you will get (optional)
+        proficiency = 3000, -- min proficiency level needed (optional)
+        price = 0, -- price to craft (optional)
+        chance = 75, -- Chance of crafting success in percentage (optional)
+        whitelist = {}, -- jobs where the recipe will be visible / can create the item (optional)
+        blacklist = {}, -- list of excluded jobs, gangs. If you have the "whitelist" list this part won't work (optional)
+        special = { 'only_steel' }, -- items can be crafted on a special workplace (optional)
+        metadata = { -- -- Added metadata to the crafted product (optional) for ox_inventory
+            components = { -- ox_inventory/data/weapons.lua
+                'at_flashlight',
+                'at_suppressor_light',
+                'at_skin_luxe',
+                'at_clip_extended_pistol',
+            },
+            ammo = 15,
+            durability = 50,
         },
-        
-        -- Fully optimized recipe
-        
-        steel = { 
-            labor = 5, -- labor point (optional)
-            ingredients = { -- [ingredients = piece] !required
-                iron = 5,
-                hammer = -1 -- [-] the ingredients marked with the recipes (- with signs) are not taken away by the system (from version 1.2)
-            }, 
-            time = 3,   -- needed time to create the item (optional)
-            amount = 2, -- ammount of items you will get (optional)
-            proficiency = 3000, -- min proficiency level needed (optional)
-            price = 0, -- price to craft (optional)
-            chance = 75, -- Chance of crafting success in percentage (optional)
-            exclusive = {}, -- jobs where the recipe will be visible / can create the item (optional)
-            excluding = {}, -- list of excluded jobs, gangs. If you have the "exclusive" list this part won't work (optional)
-            special = 'only_steel', -- items can be crafted on a special workplace (optional)
-            infoInherit = false, -- Inherit the 'Info' data of the ingredients to the crafted product (optional)
-            info = { -- Sets the information for the product (optional)
-                param1 = 'value1',
-                param2 = 'value2'
-            }
-        }
     }
 }
-```
-
-Default recipe values:
-
-    labor = 0
-    time = 10
-    price = 0
-    amount = 1
-    proficiency = 0
-    chance = 100
-    special = nil
-    exclusive = nil
-    excluding = nil
-    infoInherit = nil
-    info = {}
-         
-### 'Info'(meta) data settings
-**IMPORTANT:** If the object receives 'info' data, you should not stack.
-It is recommended to make it unique in /qb-core/shared/items.lua
- 
-- **inheritance from the ingredients:** 
+``` 
+        
+### meta data settings
+**IMPORTANT:** If the object receives metadata, you should not stack.
+It is recommended to make it unique in item list. E.g: /qb-core/shared/items.lua
      
-```infoInherit = true```
-
-The product inherits 'info' data from all ingredients.
-
-What can you use?
-For example, stimulate a lemonade or even poison with soup. 
-```
-E.g.: Lemonade recipe: 
-- water contains 'blur' effect, 
-- lemon contains 'shake' effect,
-- sugar contains 'crack'
-```
-The following info is created for lemonade:
-
-Inherited data:
+- **to add metadata**
+ 
+The recipe can determine the metadata parameter. An 'table' is required to specify.
  
  ```lua
-info = {
-     effects = { 'shake', 'blur' },
-     contain = 'crack'
-}
-```
- 
-In the case of the same keys, collect values in table
-     
-- **to add constant data**
- 
-The recipe can determine the info parameter. An 'table' is required to specify.
- 
- ```lua
--- recipe
-Config.craftData = { 
- cooking = { 
-      lemonade = {
-          -- ...
-          info = {
-              effects = 'cold'
-          }
-      }
-  }
-}
+Config.recipes = {
+    { 
+         name = 'lemonade',
+         -- ...
+         metadata = {
+             effects = 'cold'
+         }
+     },
+     {
+        name = 'weapon_pistol',
+      
+        metadata = {  --for ox_inventory
+            components = {  --ox_inventory/data/weapons.lua
+                'at_flashlight',
+                'at_suppressor_light',
+                'at_skin_luxe',
+                'at_clip_extended_pistol',
+            },
+            ammo = 15,
+            durability = 50,
+        },
+     }
+ }
  ```
  
 Lemonade will always receive 'cold' effect parameter
  
-```lua
-   -- finished product
-  info = { 
-      effects = 'cold'
-  }
-```
- 
-If inherit from the ingredients is also turned on, it will be added:
- 
-Inherited and constant info data:
- 
-```lua
--- finished product
-info = { 
- effects = { 'shake', 'blur', 'cold' },
- contain = 'crack'
-}
-```
  
 - **add creator data**
 
-```lua
-Config.creatorData = true
-```
 Unique and weapon type items, the creator's data are added.
 Expanding the above example is the result:
 
 ```lua
-info = {
-    effects = { 'shake', 'blur', 'cold' },
-    contain = 'crack',
+metadata = {
     creator = {
-        citizenid = 'AFG05790',
-        charName = 'Roy Tucker',
+        identifier = 'AFG05790', -- citizenid or char:identifier
+        registered = 'Roy Tucker',
         name = 'Ekhion'
     }
 }
@@ -383,18 +370,17 @@ info = {
 - The jobs which are not used here will not see the recipes in the recipe book
 
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             -- ...
-             -- ...
-             -- ...
-             exclusive = {
-                 mechanic = { 0, 1 }, -- rank list (optional)
-                 vagos = {}, -- all ranks accepted
-                 'crips', -- all ranks accepted
-             }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         -- ...
+         -- ...
+         -- ...
+         whitelist = {
+             mechanic = { 0, 1 }, -- rank list (optional)
+             vagos = {}, -- all ranks accepted
+             'crips', -- all ranks accepted
          }
      }
  }
@@ -404,17 +390,13 @@ Config.craftData = {
 - only in string! profesions(job) and groups(gang), ranks are not needed here.
 - The listed professions and gangs won't be able to see the recipes in the recipe book.
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             -- ...
-             -- ...
-             -- ...
-             excluding = {
-                 'mechanic', 'vagos', 'crips',
-             }
-         }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         blacklist = {
+             'mechanic', 'vagos', 'crips',
+         }   
      }
  }
 ```
@@ -423,18 +405,17 @@ Config.craftData = {
 FiveM ACE permissions can be set to control the usability of recipes, workplaces and portable workplaces. For example:
 
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             requiredAcePermission = 'vip_gold' 
-         }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         requiredAcePermission = 'vip_gold' 
      }
  }
 ```
 
 Fulfillment of requiredAcePermission alone does not guarantee access to the workplace or recipe.
-If an exclusive or excluding condition is set, it must also be met.
+If an whitelist or blacklist condition is set, it must also be met.
 
 Only one requiredAcePermission can be set per recipe or workplace.
 
@@ -476,7 +457,7 @@ add_principal group.goldvip group.silvervip
 
 ### Workstands
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
-Workplaces like recipes can be exclusive for different jobs/gangs.
+Workplaces like recipes can be whitelist for different jobs/gangs.
 You can create as much workstands as you like. Every profession has its own workstand/workstands.
 For every workplace you can define an own marker, animation, object, specialization and owner.
 You can craft all the non spcialized items in the specialized workplaces.
@@ -490,19 +471,18 @@ You are able to put labels on recepies and workplaces and make them points of in
 ```lua
 Config.workstations = { -- WORKPLACES
     {
-        workstation = 'chemist',
+        workstation = { 'chemist' },
         ...,
-        special = 'drug', -- This can be any label
+        special = { 'drug' }, -- This can be any label, even several
     }   
 }
 
-Config.craftData = { -- RECEPIES
-    chemist = {
-        lsd = {
-            ...,
-            special = 'drug'
-        },  
-    }      
+Config.recipes = { -- RECIPES
+    {
+        name = 'lsd',
+        ...,
+        special = { 'drug' }
+    }
 }
 ```
 
@@ -518,13 +498,13 @@ Config.workstations = {
 
     -- Basic workstand
     {
-        workstation = 'cooking', -- profession (this is defined at the recipes)
+        workstation = { 'cooking' }, -- profession (this is defined at the recipes)
         pos = vector4(226.98, -889.95, 29.7, 70.16),
     },
     
     -- Fully optimized workstand
     {
-        workstation = 'cooking', -- profession (this is defined at the recipes)
+        workstation = { 'cooking' }, -- profession, even several (this is defined at the recipes)
         pos = vector4(216.98, -889.95, 29.7, 70.16),
         animation = { -- (optional)
             dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
@@ -543,22 +523,22 @@ Config.workstations = {
             placeOnGround = true, -- (optional) (PlaceObjectOnGroundProperly(object))
             offset = vector3(0, 0, 0) -- (optional) shift on the x, y, z axis
         },
-        special = '', -- (optional)
-        exclusive = { -- (optional) e.g 3 different options, they can be combined:
+        special = { '' }, -- (optional)
+        whitelist = { -- (optional) e.g 3 different options, they can be combined:
              mechanic = { 0, 1 }, -- rank list (optional)
              vagos = {}, -- all ranks accepted
              'crips', -- all ranks accepted
         },
-        excluding = { "police", "ambulance" }, -- (optional, n.a. if exclusive is used)
+        blacklist = { "police", "ambulance" }, -- (optional, n.a. if whitelist is used)
         actionDistance = 1.5 -- how many meters should you approach the workplace to open (optional, default 1.5)
     }
 }
 ```
 
 **Side note:** 
-All players will see the object (e.g. workstand) even if the workstand is exclusive, but the marker won't be visible and the player won't be able to interact wtih the workstand.
+All players will see the object (e.g. workstand) even if the workstand is whitelist, but the marker won't be visible and the player won't be able to interact wtih the workstand.
 
-### Portable workstations (from version 2.0)
+### Portable workstations
 To use it, you need to create new usable items, you can find some examples for this in the QBCore_addition folder.
 The parameters of the workstations are the same as those in the config file and they behave the same way.
 You can find an example of these in the server/usableitem.lua file.
@@ -574,7 +554,7 @@ This can be corrected in server/usableitem.lua with the offset setting.
 ```lua
     workstationAddRequest(source, item.name,
         {
-            workstation = 'chemist',
+            workstation = { 'chemist' },
             ...,
             object = {
                     model = 'bkr_prop_coke_table01a',
@@ -612,21 +592,10 @@ The graphics interface can be scaled at the beginning of the html/main.css file 
 If the resize function is turned on (Config.displayComponent -> uiSizeBtn = true), the user can size the interface individually
 using the '+ -' buttons in the upper left corner.
 
-### Notify
-Add your favorite messaging system
+### Notify / inventory etc.
+Set the exports of your messaging system and inventory in e_core if necessary!
 
-In the functions/notify.lua file, it is easy to change which notification system eco_crafting uses.
-Older systems do not yet support the DrawText message call, which should no longer be a problem, because in functions/notify.lua
-any substitute can be set!
-
-e.g:
-```lua
-
-function interface.client.drawText (message, position) -- Persistent message e.g.: 'Use Cooking workstation: E'
-
-    TriggerEvent('qb-core:client:DrawText', message, position) -- CHANGE ME
-end
-```
+e_core: ([Github](https://github.com/Ekhion76/e_core))
 
 ### Blips
 The blips can be set manually in the configuration file because:
@@ -672,8 +641,8 @@ Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
 Opens the craft window. Only the workstation type needs to be entered.
 ```lua
 exports['eco_crafting']:open({
-        workstation = 'weaponry',   -- required
-        special = 'w_extend',       -- optional
+        workstation = { 'weaponry' },   -- required
+        special = { 'w_extend' },       -- optional
         animation = {               -- optional
             dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
             anim = 'machinic_loop_mechandplayer',
@@ -685,26 +654,18 @@ exports['eco_crafting']:open({
 ### Server exports
  The workstand properties and the profession level can be adjusted and monitored with external scripts.
 ```lua
-exports['eco_crafting']:addLabor((xPlayer or serverId), amount)
-exports['eco_crafting']:removeLabor((xPlayer or serverId), amount)
-
-exports['eco_crafting']:addProficiency((xPlayer or serverId), 'proficiency', amount)
-exports['eco_crafting']:removeProficiency((xPlayer or serverId), 'proficiency', amount)
-
-exports['eco_crafting']:getLabor((xPlayer or serverId))
-exports['eco_crafting']:getProficiency((xPlayer or serverId))
-
-
 exports['eco_crafting']:addPortableWorkstation(workstationData, usableItemName, ownerId)
 exports['eco_crafting']:removePortableWorkstation(workstationId, requesterId)
 exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Install
+- install e_core! ([Github](https://github.com/Ekhion76/e_core))
+- start e_core before eco_crafting in server.cfg
 - copy to the resource folder
-- refresh
+- give the refresh command
+- start e_core
 - start eco_crafting
-- the script do not use databases (the script uses meta data)
 
 ### Target system:
 **turning on qb-target:**

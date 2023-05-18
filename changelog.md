@@ -1,8 +1,13 @@
 3.0
+
 ATTENTION! It is necessary to install e_core before crafting!
+
 The Tebex download includes the previous version 2.4 (only QBCore) and the new version 3.0 (3.0 standalone + e_core) for now!
+
 ATTENTION! The new (3.0)version is not compatible with the old one! (Structural modifications were necessary for independence)
+
 Introduction of e_core dependency due to framework/inventory independence ESX/QBCore (this is a separate free script: https://github.com/Ekhion76/e_core)
+
 - new design
 - blueprints (learnable blueprints)
 - multiple recipes can be added to an item

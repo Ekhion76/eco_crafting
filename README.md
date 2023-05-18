@@ -17,7 +17,7 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting7.jpg)
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.png)
 
-### ECO CRAFTING V2
+### ECO CRAFTING 3.0
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
 - Dependency: e_core ([Github](https://github.com/Ekhion76/e_core))
 

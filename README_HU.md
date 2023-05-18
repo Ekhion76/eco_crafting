@@ -1,5 +1,7 @@
 # ECO CRAFTING
-## FiveM QBCore Crafting script
+## FiveM ESX / QBCore / CustomCore Crafting script (önálló az ingyenes és nyílt forráskódú e_core segítségével)
+
+![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/eco_crafting_3.0_1.jpg)
 
 [![promo_video](https://img.youtube.com/vi/S94VstZLWlQ/0.jpg)](https://www.youtube.com/watch?v=S94VstZLWlQ)
 
@@ -16,10 +18,23 @@
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/statistics.jpg)
 
 
-### Jellemzők
+### ECO CRAFTING 3.0
 - Escrow FiveM asset ([Tebex](https://eco-store.tebex.io/package/5177809))
+- Dependency: e_core ([Github](https://github.com/Ekhion76/e_core))
 
-- Hordozható munkahelyek (2.0 verziótól)
+## Újdonságok / változások
+- FIGYELEM! Szükséges az e_core-t telepítené indítani a crafting előtt!
+- A Tebexes letöltésben megtalálható az előző 2.4-es verzió (csak QBCore) és az új 3.0-ás is (3.0 standalone + e_core) egyelőre!
+- FIGYELEM! Az új (3.0)verzió nem kompatibilis a régivel! (A függetlenség érdekében struktúrális módosítások kellettek)
+- e_core függőség bevezetése a keretrendszer/inventory függetlenség miatt ESX/QBCore (ez egy külön szkript: https://github.com/Ekhion76/e_core)
+- Új design
+- Blueprint (tanulható tervrajzok)
+- Egy tárgyhoz több recept is felvehető
+- Egy munkahelyhez több szakma és specialitás is köthető
+- A tárgy készítés közben mellék termék jöhet létre (side product)
+
+### Jellemzők
+- Hordozható munkahelyek
     - Bárhol felállítható egy asztal vagy meggyújtható egy tábortűz
     - Beépített tárgy lehelyező funkció. Az asztal forgatható, pontos pozícióra helyezhető.
     - Az inventory-ból használt tárggyal létrehozható a munkahely, amit siker esetén elvesz
@@ -31,41 +46,40 @@
     - Segítség a fejlesztőknek: a lehelyezett asztalok modeljét és pozícióját vágólapra másolja
     - Exportok: létrehozáshoz, eltávolításhoz és információ lekéréshez
     - Discord log
-    - 2.1 Verziótól A hordozható munkahelyek tárolhatók így szkript vagy szerver újraindítás esetén is megmaradnak
+    - A hordozható munkahelyek tárolhatók így szkript vagy szerver újraindítás esetén is megmaradnak
     
 - Receptek
     - Keresés a receptek között
-    - Fontos! Egy tárgyat csak egy szakma gyárthat és csak egy receptet lehet hozzárendelni
     - Könnyen átlátható, egymásra épülő, több lépcsős receptek 
     - Testreszabhatóság, foglalkozás(ok)tól függő használhatóság vagy tiltás, speciális munkahelyhez kötés
     - Beárazható, a termékek gyártása pénzbe is kerülhet.
     - Receptkönyv
 
-- Munkapont rendszer (kapcsolható)
+- Munkapont rendszer (kapcsolható) (e_core)
     - A termékek gyártása munkapontba kerül
     - Az elhasznált munkapont az adott szakmában növeli a jártasságot
     - Munkapont növelő tárgy (adható akár esemény jutalomként vagy vásárolhatóvá tehető)
 
-- Jártasság rendszer (kapcsolható)
+- Jártasság rendszer (kapcsolható) (e_core)
     - Jártasság statisztika oldal
     - Jártasság növelő tárgy (adható akár eseményeken jutalomként, vagy felkutatható eldugott helyeken)
 
-- Esély rendszer (1.2 verziótól)
+- Esély rendszer
     - A recept beállításban megadható százalékban, hogy a tárgy elkészítése mekkora eséllyel lesz sikeres.
     
-- Méretezhető grafikus felület (1.2 verziótól)
+- Méretezhető grafikus felület
     - A felület a játék ablakának méretéhez igazodik, de lehetőség van ezen felül is '+ -' gombokkal állítani a méretet
     
-- Megmaradó hozzávalók (1.2 verziótól)
+- Megmaradó hozzávalók
     - A receptek (- jellel) megjelölt hozzávalóit nem veszi el a rendszer
     
-- Szakma ikonok a statisztika oldalon (1.2.1 verziótól)
+- Szakma ikonok a statisztika oldalon
     
-- Szint rendszer (1.3 verziótól)
+- Szint rendszer (e_core)
     - Szintenként meghatározható a kedvezmények mértéke százalékban
     - Kedvezmények az alábbi 4 tételre alkalmazhatók: chance, price, time, labor
     
-- 'Info' adatok hozzáadása az elkészített termékhez, valamint öröklési lehetőség a hozzávalóktól. (Hasonlóan, mint például a fegyverek sorozatszáma)
+- 'Info / meta' adatok hozzáadása az elkészített termékhez. (Hasonlóan, mint például a fegyverek sorozatszáma)
 
 - Mozgatható grafikus felület
 - A munkahelyek specializálhatók, foglalkozáshoz, csoportokhoz egyszóval tulajdonoshoz köthetők
@@ -84,12 +98,14 @@ Alap működés beállítások:
 Lehetőség van a recept árak, jártasság, munkapont rendszert kikapcsolni egyenként, ha ezekere nincs szükség.
 Ha a munkapont rendszer ki van kapcsolva, akkor automatikusan kikapcsolódik a jártasság rendszer is!
 
+Ezek a beállítások központilag kapcsolhatók az e_core ban!
+
 ```lua
 Config.systemMode = {
     profession = true, -- jártasság rendszer
     labor = true, -- Ha ezt kikapcsolod automatikusan kikapcsolódik a jártasság rendszer is!
     money = true, -- Recept árainak figyelembevétele
-    chance = true -- Siker esélyek figyelembevétele (1.2 verziótól)
+    chance = true -- Siker esélyek figyelembevétele
 }
 ```
 
@@ -165,13 +181,13 @@ Ha nem kellenek a rangok, akkor a config/ranks.lua -ban állíts be üres tábl�
     Config.ranks = {}
 ```
 
-Ebben az esetben a szakmai jártasság felső határát a config/config.lua állítja be.
+Ebben az esetben a szakmai jártasság felső határát a config/main.lua állítja be.
 
 ```lua
     Config.proficiencyCap = 120000
 ```
 
-Ha egyáltalán nem szeretnél jártasságrendszert, akkor a a config/config.lua - ban kikapcsolható:
+Ha egyáltalán nem szeretnél jártasságrendszert, akkor a a config/main.lua - ban kikapcsolható:
 
 ```lua
     Config.systemMode = {
@@ -191,51 +207,65 @@ holott a szakács jártasságot kellene növelniük a befektetett munkapontoknak
 Íme egy példa, hogy a szakács szakmán belül, hogyan köthetünk recepteket külön éttermekhez és foglalkozásokhoz:
 
 ```lua
-Config.craftData = {
-    cooking = {
-        tosti = { -- gyárthatja bárki, bármely 'cooking' munkahelynél
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0
+Config.recipes = {
+    {
+        name = 'tosti', -- gyárthatja bárki, bármely 'cooking' munkahelynél
+        labor = 10,
+        ingredients = {
+                         { name = 'item1', amount = 1, remove = true },
+                         { name = 'item2', amount = 1, remove = true },
+                     },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0
+    },
+    {
+        name = 'twerks_candy', -- gyárthatja bárki, de csak speciális 'tacoBomb' munkahelynél
+        labor = 10,
+        ingredients = {
+                       { name = 'item1', amount = 1, remove = true },
+                       { name = 'item2', amount = 1, remove = true },
+                   },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        special = { 'tacoBomb' }
+    },
+    {
+        name = 'snikkel_candy', -- csak az engedélyezett tagok és csak speciális 'hookies' munkahelynél
+        labor = 10,
+        ingredients = {
+                       { name = 'item1', amount = 1, remove = true },
+                       { name = 'item2', amount = 1, remove = true },
+                   },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        whitelist = {
+            mechanic = { 0, 1 }, -- rang lista (opcionális)
+            vagos = {}, -- minden rang elfogadva
+            'crips', -- minden rang elfogadva
         },
-        twerks_candy = { -- gyárthatja bárki, de csak speciális 'tacoBomb' munkahelynél
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            special = 'tacoBomb'
-        },
-        snikkel_candy = { -- csak az exkluzív tagok és csak speciális 'hookies' munkahelynél
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            exclusive = {
-                mechanic = { 0, 1 }, -- rang lista (opcionális)
-                vagos = {}, -- minden rang elfogadva
-                'crips', -- minden rang elfogadva
-            },
-            special = 'hookies'
-        },
-        sandwich = { -- a police és ambulance foglalkozáson-on kívüliek gyárthatják
-            labor = 10,
-            ingredients = { item1 = 1, item2 = 1 },
-            time = 5,
-            amount = 1,
-            proficiency = 0,
-            price = 0,
-            excluding = {
-                "police",
-                "ambulance"
-            }
-        },
+        special = { 'hookies' }
+    },
+    {
+        name = 'sandwich', -- a police és ambulance foglalkozáson-on kívüliek gyárthatják
+        labor = 10,
+        ingredients = {
+                       { name = 'item1', amount = 1, remove = true },
+                       { name = 'item2', amount = 1, remove = true },
+                   },
+        time = 5,
+        amount = 1,
+        proficiency = 0,
+        price = 0,
+        blacklist = {
+            "police",
+            "ambulance"
+        }
     }
 }
 ```
@@ -243,139 +273,103 @@ Config.craftData = {
 ### Recept felépítése
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/recipes_specialize.jpg)
 ```lua
-Config.craftData = {
-    foundry = { 
+Config.recipes = {
+    { 
     
         -- Alap recept. Igen, ennyi az egész. A többi alap értéket kap! 
+        
+        name = 'aluminum', -- elkészítendő tárgy
+        ingredients = {
+                         { name = 'aluminumoxide', amount = 3, remove = true }, -- Csak ez szükséges
+                     },
+    },
     
-        aluminum = { -- elkészítendő tárgy
-            ingredients = { aluminumoxide = 3 } -- Csak ez szükséges
+    { -- Teljesen opcionalizált recept
+        name = 'pistol',
+        labor = 5, -- munkapont (opcionális)
+        ingredients = {
+                         { name = 'steel', amount = 1, remove = true }, -- Csak ez szükséges
+                         { name = 'hammer', amount = 1, remove = false }, -- remove = false azt jelzi, hogy ez a hozzávaló nem lesz elvéve
+                     },
+         blueprints = {
+                     { name = 'blueprint_pistol', knowledge = 'pistol' },
+                 },
+         sideProducts = { -- besides the main product, these items are also created with a given chance
+                     { name = 'random_item', amount = 1, chance = 40, metadata = {} },
+                 },
+        time = 3,   -- elkészítési idő másodpercben (opcionális)
+        amount = 1, -- kapott késztermék mennyisége (opcionális)
+        proficiency = 3000, -- minimum szakmai jártasság (opcionális)
+        price = 0, -- bekerülési összeg (opcionális)
+        chance = 75, -- Gyártási siker esélye százalékban (opcionális)
+        whitelist = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
+        blacklist = {}, -- kizárt job-ok, gang-ek listája. Ha van engedélyezett lista ez figyelmen kívül marad. (opcionális)
+        special = { 'only_steel' }, -- specializált munkahelyen gyártható (opcionális)
+        metadata = { -- hozzáadja adatait az elkészített termékhez (opcionális) for ox_inventory
+            components = { -- ox_inventory/data/weapons.lua
+                'at_flashlight',
+                'at_suppressor_light',
+                'at_skin_luxe',
+                'at_clip_extended_pistol',
+            },
+            ammo = 15,
+            durability = 50,
         },
         
-        -- Teljesen opcionalizált recept
-       
-        steel = {
-            labor = 5, -- munkapont (opcionális)
-            ingredients = { -- [hozzávalók = db] szükséges megadni
-                steel = 5, 
-                hammer = -1 -- [-] előjeles darabszám azt jelzi, hogy ez a hozzávaló nem lesz elvéve (1.2 verziótól)
-            }, 
-            time = 3,   -- elkészítési idő másodpercben (opcionális)
-            amount = 1, -- kapott késztermék mennyisége (opcionális)
-            proficiency = 3000, -- minimum szakmai jártasság (opcionális)
-            price = 0, -- bekerülési összeg (opcionális)
-            chance = 75, -- Gyártási siker esélye százalékban (opcionális)
-            exclusive = {}, -- kizárólagos job-ok, gang-ek listája, akik láthatják / készíthetik a terméket (opcionális)
-            excluding = {}, -- kizárt job-ok, gang-ek listája. Ha van exkluzív lista ez figyelmen kívül marad. (opcionális)
-            special = 'only_steel', -- specializált munkahelyen gyártható (opcionális)
-            infoInherit = false, -- átörökíti a hozzávalók 'info' adatait az elkészített termékre (opcionális)
-            info = { -- A termékhez beállítja az információt (opcionális)
-                param1 = 'value1',
-                param2 = 'value2'
-            }
-        }
     }
 }
 ```
 
-Alapértelmezett recept értékek:
-
-    labor = 0
-    time = 10
-    price = 0
-    amount = 1
-    proficiency = 0
-    chance = 100
-    special = nil
-    exclusive = nil
-    excluding = nil
-    infoInherit = nil
-    info = {}
-        
-### Info (meta) adatok beállítása
-FONTOS: Ha a tárgy 'info' adatokat kap, nem szabad halmozni(stack), 
-ezért ajánlott a /qb-core/shared/items.lua fájlban egyedivé(**UNIQUE**) tenni!
+### meta adatok beállítása
+FONTOS: Ha a tárgy meta adatokat kap, nem szabad halmozni(stack), 
+ezért ajánlott az item listádban pl.: /qb-core/shared/items.lua fájlban egyedivé(**UNIQUE**) tenni!
 Ha egy slot-ban több info-t tatalmazó tárgy van, akkor az első infóját átveszi mind!
 
-#### Hozzávalók adatainak öröklése:
-    
-```lua
-infoInherit = true -- minden receptnél külön állítandó
-```
-
-A termék az összes hozzávalójától örökli az 'info' adatokat, kivétel a szériaszámot és a készítőt.
-
-**Mire használható?** 
-
-Például limonádéhoz serkentőt, vagy akár leveshez mérget keverni. 
-
-Nézzük a limonádé receptjét:
-```
-víz tartalmaz egy 'blur' effekt paramétert,
-citrom a citrom egy 'shake' effektet, 
-cukor tartalmaz 'crack'-et
-```
-
-Elkészítéskor a következő info jön létre:
+#### metaadatok hozzáadása
+A receptben meghatározható az metadata paraméter. Táblát szükséges megadni.
 
 ```lua
-info = {
-    effects = { 'shake', 'blur' },
-    contain = 'crack'
-}
-```
-Több azonos kulcs esetén az értékeket táblába gyüjti
-    
-#### fix adatok hozzáadása
-
-A receptben meghatározható az info paraméter. Táblát szükséges megadni.
-
-```lua
-Config.craftData = {
-    cooking = { 
-         lemonade = {
-             -- ...
-             info = {
-                 effects = 'cold'
-             }
+Config.recipes = {
+    { 
+         name = 'lemonade',
+         -- ...
+         metadata = {
+             effects = 'cold'
          }
+     },
+     {
+        name = 'weapon_pistol',
+      
+        metadata = {  --for ox_inventory
+            components = {  --ox_inventory/data/weapons.lua
+                'at_flashlight',
+                'at_suppressor_light',
+                'at_skin_luxe',
+                'at_clip_extended_pistol',
+            },
+            ammo = 15,
+            durability = 50,
+        },
      }
  }
 ```
 
 A limonádé minden esetben megkapja 'cold' effekt paramétert.
-Ha ez mellé be van kapcsolva a hozzávalóktól való öröklés, akkor az hozzáadódik:
 
-Örökölt és fix info adatok:
-
-```lua
-info = {
-    effects = { 'shake', 'blur', 'cold' },
-    contain = 'crack'
-}
-```
-
-- **készítő adatai**
-
-```lua
-Config.creatorData = true
-```
 egyedi(UNIQUE) és fegyver típusú tárgyakhoz, hozzáadódnak a készítő adatai.
 A fenti példát kibővítve az eredmény:
 
 ```lua
-info = {
-    effects = { 'shake', 'blur', 'cold' },
-    contain = 'crack',
+metadata = {
     creator = {
-        citizenid = 'AFG05790',
-        charName = 'Roy Tucker',
+        identifier = 'AFG05790', -- citizenid vagy char:identifier
+        registered = 'Roy Tucker',
         name = 'Ekhion'
     }
 }
 ```
 
-### Exkluzív beállítás
+### engedélyezett beállítás
 - foglalkozás(job) és csoport(gang) ömlesztve megadható
 - ha táblaként van megadva, akkor csak a felsorolt rang engedélyezett Pl.: mechanic = { 0, 1 }
 - üres tábla esetén az összes rang engedélyezett. Pl.: mechanic = {}
@@ -383,18 +377,17 @@ info = {
 - a felsoroltokon kívül eső szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             -- ...
-             -- ...
-             -- ...
-             exclusive = {
-                 mechanic = { 0, 1 }, -- rang lista (opcionális)
-                 vagos = {}, -- minden rang elfogadva
-                 'crips', -- minden rang elfogadva
-             }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         -- ...
+         -- ...
+         -- ...
+         whitelist = {
+             mechanic = { 0, 1 }, -- rang lista (opcionális)
+             vagos = {}, -- minden rang elfogadva
+             'crips', -- minden rang elfogadva
          }
      }
  }
@@ -404,17 +397,13 @@ Config.craftData = {
 - karakterlánc felsorolást fogad el vegyesen szakmák(job) és csoportok(gang), nincsenek a rangok figyelembe véve.
 - a felsorolt szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             -- ...
-             -- ...
-             -- ...
-             excluding = {
-                 'mechanic', 'vagos', 'crips',
-             } 
-         }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         blacklist = {
+             'mechanic', 'vagos', 'crips',
+         } 
      }
  }
 ```
@@ -423,18 +412,17 @@ Config.craftData = {
 FiveM ACE permissions beállítható a receptek, munkahelyek és a hordozható munkahelyek használhatóságának szabályzásához. Például:
 
 ```lua
-Config.craftData = {
-    foundry = { 
-         steel = {
-             -- ...
-             requiredAcePermission = 'vip_gold' 
-         }
+Config.recipes = {
+    { 
+         name = 'steel',
+         -- ...
+         requiredAcePermission = 'vip_gold' 
      }
  }
 ```
 
 A requiredAcePermission teljesülése önmagában még nem garantálja a hozzáférést a munkahelyhez vagy recepthez. 
-Ha be van állítva exclusive vagy excluding feltétel, annak is meg kell feleni.
+Ha be van állítva whitelist vagy blacklist feltétel, annak is meg kell feleni.
 
 Egy recepthez vagy munkahelyhez csak egy requiredAcePermission állítható be.
 
@@ -475,7 +463,7 @@ add_principal group.goldvip group.silvervip
 
 ### Munkahelyek
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/workplace_details.jpg)
-A receptekhez hasonlóan a munkahelyeket is lehet exkluzívvá vagy csoportok számára kizárttá tenni.
+A receptekhez hasonlóan a munkahelyeket is lehet engedélyezetté vagy csoportok számára kizárttá tenni.
 A munkahelyek tetszőleges számban létrehozhatók. Minden szakmának saját munkahelye / munkahelyei vannak.
 Mindegyikhez saját markert, animációt, objektumot, specializációt és tulajdonost lehet meghatározni.
 A specializált munkahelyeken minden olyan terméket is le lehet gyártani, ami nincs specializálva.
@@ -486,25 +474,24 @@ A specializáció gyakorlatilag egy cimkézés, mellyel össze lehet kötni a re
 Például, vegyük alapul a vegyész szakmát. Receptjei közt megtalálhatók a legális és illegális szerek is.
 Gyógyszerek, festékek(spray), vegyszerek és a drogok is.
 
-Bárki főzhet drogot, kivéve a rendfenntartók, mentősök, tűzoltók (excluding), de az, hogy hol, nem mindegy.
+Bárki főzhet drogot, kivéve a rendfenntartók, mentősök, tűzoltók (blacklist), de az, hogy hol, nem mindegy.
 A droglabor asztalát és a recepteket fel kell cimkézni, így párosíthatók.
 
 ```lua
 Config.workstations = { -- MUNKAHELYEK
     {
-        workstation = 'chemist',
+        workstation = { 'chemist' },
         ...,
-        special = 'drug', -- ez lehet bármilyen cimke
+        special = { 'drug' }, -- ez lehet bármilyen cimke, akár több is
     }   
 }
 
-Config.craftData = { -- RECEPTEK
-    chemist = {
-        lsd = {
-            ...,
-            special = 'drug'
-        },     
-    }      
+Config.recipes = { -- RECEPTEK
+    {
+        name = 'lsd',
+        ...,
+        special = { 'drug' }
+    }
 }
 ```
 
@@ -520,13 +507,13 @@ Config.workstations = {
 
     -- Alap munkahely
     {
-        workstation = 'cooking', -- szakma (ez van meghatározva a recepteknél)
+        workstation = { 'cooking' }, -- szakma (ez van meghatározva a recepteknél)
         pos = vector4(226.98, -889.95, 29.7, 70.16),
     },
     
     -- Teljesen opcionalizált munkahely
     {
-        workstation = 'cooking', -- szakma (ez van meghatározva a recepteknél)
+        workstation = { 'cooking' }, -- szakma, akár több is (ez van meghatározva a recepteknél)
         pos = vector4(216.98, -889.95, 29.7, 70.16),
         animation = { -- (opcionális)
             dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
@@ -545,23 +532,23 @@ Config.workstations = {
             placeOnGround = true, -- (opcionális) (PlaceObjectOnGroundProperly(object))
             offset = vector3(0, 0, 0) -- (opcionális) Eltolás X, Y, Z tengelyen
         },
-        special = '', -- (opcionális)
-        exclusive = { -- (opcionális) a példa 3 módszert mutat be, ezek kombinálhatók:
+        special = { '' }, -- (opcionális)
+        whitelist = { -- (opcionális) a példa 3 módszert mutat be, ezek kombinálhatók:
              mechanic = { 0, 1 }, -- rang lista (opcionális)
              vagos = {}, -- minden rang elfogadva
              'crips', -- minden rang elfogadva
         },
-        excluding = { "police", "ambulance" }, -- (opcionális, ha van exkluzív beállítás ez figyelmen kívűl marad)
+        blacklist = { "police", "ambulance" }, -- (opcionális, ha van engedélyezett beállítás ez figyelmen kívűl marad)
         actionDistance = 1.5 -- megközelítési távolság a megnyitáshoz (opcionális, alapérték 1.5)
     }
 }
 ```
 
 **Megjegyzés:** 
-A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely exkluzív, vagy az illető ki van zárva! 
+A kihelyezett objektumot (Pl.: munkaasztal) mindenki látja akkor is, ha  egy munkahely engedélyezett, vagy az illető ki van zárva! 
 Jelzés(marker) nem lesz látható és interakciót sem tud kezdeményezni.
 
-### Hordozható munkahelyek (2.0 verziótól)
+### Hordozható munkahelyek
 Használatához létre kell hozni új használható tárgyakat, ehhez pár példát találsz a QBCore_addition mappában.
 A munkahelyek paraméterezése megegyezik a config fájlban lévőkkel és ugyan úgy is viselkednek.
 Ezekre példát találsz a server/usableitem.lua fájlban.
@@ -577,7 +564,7 @@ Ez a server/usableitem.lua - ban található.
 ```lua
     workstationAddRequest(source, item.name,
         {
-            workstation = 'chemist',
+            workstation = { 'chemist' },
             ...,
             object = {
                     model = 'bkr_prop_coke_table01a',
@@ -618,20 +605,10 @@ Ha be van kapcsolva az átméretezés funkció (Config.displayComponent -> uiSiz
 a bal felső sarokban található '+ -' gombok segítségével.
 
 
-### Üzenőrendszer
+### Üzenőrendszer / inventory stb.
+Állítsd be üzenőrendszered, inventory-d exportjait, ha szükséges az e_core-ban!
 
-Állítsd be kedvenc üzenőrendszered!
-A functions/notify.lua fájlban könnyen megváltoztatható, hogy mely rendszert használja az eco_crafting.
-A régebbi rendszerek még nem támogatják a DrawText üzenethívást, ami már nem okozhat gondot, mert a functions/notify.lua-ban 
-beállítható bármilyen helyettesítő!
-Például.:
-```lua
-
-function interface.client.drawText (message, position) -- Persistent message e.g.: 'Use Cooking workstation: E'
-
-    TriggerEvent('qb-core:client:DrawText', message, position) -- CHANGE ME
-end
-```
+e_core: ([Github](https://github.com/Ekhion76/e_core))
 
 ### Blippek
 A blippeket a konfigurációs fájlban manuálisan kell beállítani, mert: 
@@ -677,8 +654,8 @@ Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
 Megnyitja a craft ablakot. Csak a munkaállomás típusát szükséges megadni.
 ```lua
 exports['eco_crafting']:open({
-        workstation = 'weaponry',   -- required
-        special = 'w_extend',       -- optional
+        workstation = { 'weaponry' },   -- required
+        special = { 'w_extend' },       -- optional
         animation = {               -- optional
             dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
             anim = 'machinic_loop_mechandplayer',
@@ -689,26 +666,18 @@ exports['eco_crafting']:open({
 ### Server exports
 Külső szkriptekből lekérdezhetők, befolyásolhatók a munkapont és jártasság értékek
 ```lua
-exports['eco_crafting']:addLabor((xPlayer or serverId), amount)
-exports['eco_crafting']:removeLabor((xPlayer or serverId), amount)
-
-exports['eco_crafting']:addProficiency((xPlayer or serverId), 'proficiency', amount)
-exports['eco_crafting']:removeProficiency((xPlayer or serverId), 'proficiency', amount)
-
-exports['eco_crafting']:getLabor((xPlayer or serverId))
-exports['eco_crafting']:getProficiency((xPlayer or serverId))
-
-
 exports['eco_crafting']:addPortableWorkstation(workstationData, usableItemName, ownerId)
 exports['eco_crafting']:removePortableWorkstation(workstationId, requesterId)
 exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Telepítés
+- telepítsd az e_core-t! ([Github](https://github.com/Ekhion76/e_core))
+- az e_core-t az eco_crafting előtt indítsd a szerver.cfg-ben
 - másold be a resource mappába
-- refresh
+- add ki a refresh parancsot
+- start e_core
 - start eco_crafting
-- adatbázist nem igényel (meta adatokat használ)
 
 ### Target működése:
 **qb-target bekapcsolása:**

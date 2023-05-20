@@ -1,4 +1,4 @@
-3.0
+3.0 (first standalone version with e_core)
 
 ATTENTION! It is necessary to install e_core before crafting!
 
@@ -7,14 +7,15 @@ The Tebex download includes the previous version 2.4 (only QBCore) and the new v
 ATTENTION! The new (3.0)version is not compatible with the old one! (Structural modifications were necessary for independence)
 
 Introduction of e_core dependency due to framework/inventory independence ESX/QBCore (this is a separate free script: https://github.com/Ekhion76/e_core)
-
 - new design
 - blueprints (learnable blueprints)
 - multiple recipes can be added to an item
 - several professions and specialties can be linked to one workplace
 - during the creation of the item, a side product can be created
+- support for any inventory can be built in (e_core)
+- ox_inventory support built in (e_core)
 
-2.4
+2.4 (last only QBCore version without e_core)
 - added client side export: The crafting interface can also be opened from an external script. See export_examples.md
 - added Config.workstationExpirationTime (in day). Is evaluated at script startup. Prevents portable workstations from remaining permanently installed.
 - added Config.workstationMaxCorrectionZ. The height of portable workstations is adjustable
@@ -37,7 +38,7 @@ Introduction of e_core dependency due to framework/inventory independence ESX/QB
 - added workstation add/remove function + usable items
 - added workstation add/remove exports
 - added object placer function
-- config file split: craftdata, blips, workstations, ranks, were placed in a separate file
+- config file split: craftdata, blips, workstations, levels, were placed in a separate file
 - added remove money reason
 - added export_examples.md file
 - added portable workstation discord log
@@ -62,7 +63,7 @@ libs/functions.lua
 - user interface text repetition bug fix. Affected client.lua, fxmanifest.lua (version number)
 
 1.4.2
-- ingredients info function bugfix
+- ingredients metadata function bugfix
 - unlocking the encryption of functions.lua
 
 1.4.1
@@ -73,7 +74,7 @@ libs/functions.lua
 1.4
 - add 'Info' data to the product (Similarly as a serial number of a weapon)
 - inherit the 'Info' data of the ingredients to the crafted product (e.g.: boost, poison, effect in 'Info' data etc...)
-- added creator data to product info (only UNIQUE items)
+- added creator data to product metadata (only UNIQUE items)
 
 Config file changes:
 ```lua
@@ -107,7 +108,7 @@ Config.workstations = {
 - 'Config.inMarkerDistance' has been eliminated, the 'actionDistance' added to the Config.workstations
 
 Config file changes:
-- added ranks
+- added levels
 - 'Config.inMarkerDistance' relocated Config.workstations -> actionDistance
 
 1.2.1

@@ -32,6 +32,8 @@
 - Egy tárgyhoz több recept is felvehető
 - Egy munkahelyhez több szakma és specialitás is köthető
 - A tárgy készítés közben mellék termék jöhet létre (side product)
+- Bármely inventory támogatása beépíthető (e_core)
+- ESX / QB Inventory támogatás alpértelmezetten támogatott (e_core)
 
 ### Jellemzők
 - Hordozható munkahelyek
@@ -361,15 +363,13 @@ A fenti példát kibővítve az eredmény:
 
 ```lua
 metadata = {
-    creator = {
-        identifier = 'AFG05790', -- citizenid vagy char:identifier
-        registered = 'Roy Tucker',
-        name = 'Ekhion'
-    }
+    identifier = 'AFG05790', -- citizenid vagy char:identifier
+    registered = 'Roy Tucker',
+    name = 'Ekhion'
 }
 ```
 
-### engedélyezett beállítás
+### Whitelist beállítás
 - foglalkozás(job) és csoport(gang) ömlesztve megadható
 - ha táblaként van megadva, akkor csak a felsorolt rang engedélyezett Pl.: mechanic = { 0, 1 }
 - üres tábla esetén az összes rang engedélyezett. Pl.: mechanic = {}
@@ -393,7 +393,7 @@ Config.recipes = {
  }
 ```
 
-### Excluding, kizárás beállítás
+### Blacklist, kizárás beállítás
 - karakterlánc felsorolást fogad el vegyesen szakmák(job) és csoportok(gang), nincsenek a rangok figyelembe véve.
 - a felsorolt szakmák és csoportok, nem látják a receptet a receptkönyvben sem
 ```lua
@@ -635,12 +635,17 @@ Config.blips = {
 ```
 
 ### Függőségek
- - **Kizárólag QBCore 1.1 alap csomagokat használ, nem szükséges semmit külön telepíteni**
- - DrawText (qb-core 1.1-tól alap)
- - qb-target + PolyZone (opcionális alap)
- - qb-inventory (lj-inventory-val is tesztelve)
+ - e_core ([Github](https://github.com/Ekhion76/e_core))
 
 Az aktuális inventory ikonjait használja. A konfigurációs fájlban lehet megadni az elérési útvonalat.
+Az alap inventorihoz tartozó konfigurációs fájlt az e_core-ban találod: 
+```
+e_core/bridge/esx|qbcore/config.lua
+```
+Ha addon inventoryt használsz, mint például az ox_inventory: 
+```
+e_core/standalone/overrides/ox_inventory/config.lua
+```
 ```lua
 -- See qb-core\shared\items.lua --> ['image'] = 'example.png' or ['image'] = 'images/example.png', 
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/" 
@@ -672,17 +677,21 @@ exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Telepítés
-- telepítsd az e_core-t! ([Github](https://github.com/Ekhion76/e_core))
+- másold be az e_core-t és az eco_crafting-ot a resource mappába
+- az e_core itt található: ([Github](https://github.com/Ekhion76/e_core))
+- az eco_craftingot a keymastereden találod, vásárlás után
 - az e_core-t az eco_crafting előtt indítsd a szerver.cfg-ben
-- másold be a resource mappába
 - add ki a refresh parancsot
 - start e_core
 - start eco_crafting
 
 ### Target működése:
-**qb-target bekapcsolása:**
+**target rendszer bekapcsolása:**
 ```lua
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Átveszi a szerver konfigurációs fájl értékét 
+
+-- vagy egyszerüen csak:
+Config.useTarget = true
 ```
 1. Amennyiben a munkahelyhez objektum is van rendelve, akkor ahhoz hozzárendeli a polyBoxot.
 
@@ -701,9 +710,14 @@ Config.debugPoly = true
 ### Mellékelt hasznos tárgyak
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/addon_items.jpg)
 Lásd a QBCore_addition mappa tartalmát. Ikonok és leírás mellékelve!
-Működésükhöz a **/qb-core/shared/items.lua** fájlban létre kell hozni a tárgyakat.
-Az ikonokat másold az inventory **qb-inventory/html/images/** könyvtárába
-
+Működésükhöz létre kell hozni a tárgyakat az aktuális keretrendszerben.
+Az ikonokat másold az inventoryd képek könyvtárába
+Addon inventory esetén ne felejtsd el az e_core configban beállítani képek elérési útvonalát.
+```
+e_core/bridge/esx|qbcore/config.lua
+-- vagy: 
+e_core/standalone/overrides/custom_inventory_name/config.lua
+```
 - Hordozható munkahelyek(asztal, tábortűz, stb...)
 - Receptkönyv (recipe_collection)
 - Munkapont növelő +1000 pont (labor_enhancer)

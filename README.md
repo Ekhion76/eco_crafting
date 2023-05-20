@@ -23,15 +23,16 @@
 
 ## News / changes
 - ATTENTION! It is necessary to install e_core before crafting!
-- The Tebexes download includes the previous version 2.4 (only QBCore) and the new version 3.0 (3.0 standalone + e_core) for now!
+- The Tebex download includes the previous version 2.4 (only QBCore) and the new version 3.0 (3.0 standalone + e_core) for now!
 - ATTENTION! The new (3.0)version is not compatible with the old one! (Structural modifications were necessary for independence)
 - Introduction of e_core dependency due to framework/inventory independence ESX/QBCore (this is a separate free script: https://github.com/Ekhion76/e_core)
 - New design
 - Blueprints (learnable blueprints)
 - Multiple recipes can be added to an item
 - Several professions and specialties can be linked to one workplace
-- During the creation of the item, a side product can be created
-
+- During the creation of the object, a side product can be created
+- Support for any inventory can be built in (e_core)
+- ESX / QB Inventory support is supported by default (e_core)
 
 ### Features
 - Portable workstations
@@ -354,15 +355,13 @@ Expanding the above example is the result:
 
 ```lua
 metadata = {
-    creator = {
-        identifier = 'AFG05790', -- citizenid or char:identifier
-        registered = 'Roy Tucker',
-        name = 'Ekhion'
-    }
+    identifier = 'AFG05790', -- citizenid or char:identifier
+    registered = 'Roy Tucker',
+    name = 'Ekhion'
 }
 ```
 
-### Exclusive settings
+### Whitelist settings
 - profession(job) and group (gang) you can add all as list
 - if you have them in tables, you need to add the number of the ranks Eg.: mechanic = { 0, 1 }
 - If you have an empty table all ranks will work. Eg.: mechanic = {}
@@ -386,7 +385,7 @@ Config.recipes = {
  }
 ```
 
-### Excluding 
+### Blacklist
 - only in string! profesions(job) and groups(gang), ranks are not needed here.
 - The listed professions and gangs won't be able to see the recipes in the recipe book.
 ```lua
@@ -622,12 +621,18 @@ Config.blips = {
 ```
 
 ### Needed extensions, dependencies
- - **The script only uses QBCore 1.1 standard packages, no additional downloads needed**
- - DrawText (standard from qb-core 1.1)
- - qb-target + PolyZone (optional standard)
- - qb-inventory (also tested with lj-inventory)
+ - e_core ([Github](https://github.com/Ekhion76/e_core))
 
 Always uses the actual pictures from the inventory. The path can be set in the config file.
+
+You can find the base inventory config.lua in e_core: 
+```
+e_core/bridge/esx|qbcore/config.lua
+```
+If you use addon inventory like ox_inventory: 
+```
+e_core/standalone/overrides/ox_inventory/config.lua
+```
 ```lua
 -- See qb-core\shared\items.lua --> ['image'] = 'example.png' or ['image'] = 'images/example.png',
 Config.imagePath = "https://cfx-nui-qb-inventory/html/images/"
@@ -660,17 +665,21 @@ exports['eco_crafting']:getPortableWorkstations()
 ```
 
 ### Install
-- install e_core! ([Github](https://github.com/Ekhion76/e_core))
+- copy e_core and eco_crafting to resource folder
+- you can find e_core here: ([Github](https://github.com/Ekhion76/e_core))
+- you can find eco_crafting on your keymaster after purchase
 - start e_core before eco_crafting in server.cfg
-- copy to the resource folder
 - give the refresh command
 - start e_core
 - start eco_crafting
 
 ### Target system:
-**turning on qb-target:**
+**turning on target system:**
 ```lua
 Config.useTarget = GetConvar('UseTarget', 'false') == 'true' -- Uses the server config file values 
+
+--or simply:
+Config.useTarget = true
 ```
 1. If the workplace has an object allocated then the script will attach the polyBox. 
 
@@ -688,8 +697,14 @@ Config.debugPoly = true
 ### Attached useful tools
 ![eco_crafting gallery](https://github.com/Ekhion76/eco_crafting/blob/main/previews/addon_items.jpg)
 See the QBCore_addition folder. Icons and readme attached.
-To make them work create the items in the  **/qb-core/shared/items.lua** file
-Copy the icons to the inventory folder **qb-inventory/html/images/** 
+To make them work create the items in the your framework.
+Copy the icons to the inventory images folder 
+In case of addon inventory, don't forget to set the access path of images in e_core config.
+```
+e_core/bridge/esx|qbcore/config.lua
+-- or: 
+e_core/standalone/overrides/custom_inventory_name/config.lua
+```
 
 - Portable workplaces (table, campfire, etc.)
 - Recipe book (recipe_collection)

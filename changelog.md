@@ -1,4 +1,4 @@
-3.0 (first standalone version with e_core)
+3.0 (first ESX/QBCore/QBox version with e_core)
 
 ATTENTION! It is necessary to install e_core before crafting!
 

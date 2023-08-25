@@ -1,5 +1,5 @@
 3.01
-- Fix: the required proficiency field did not appear on the graphical interface
+- Fix: the required proficiency field did not appear on the graphical interface (change only view.jy)
 
 3.0 (first ESX/QBCore/QBox version with e_core)
 

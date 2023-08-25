@@ -1,3 +1,6 @@
+3.01
+- Fix: the required proficiency field did not appear on the graphical interface
+
 3.0 (first ESX/QBCore/QBox version with e_core)
 
 ATTENTION! It is necessary to install e_core before crafting!

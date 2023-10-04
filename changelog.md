@@ -1,3 +1,6 @@
+3.02
+- Fix: Weapon serial number duplication (affected: libs/functions.lua/self.addItem(params, count))
+
 3.01
 - Fix: the required proficiency field did not appear on the graphical interface (change only view.js)
 

@@ -289,6 +289,7 @@ Config.recipes = {
     { -- Teljesen opcionalizált recept
         name = 'pistol',
         labor = 5, -- munkapont (opcionális)
+        increaseProficiency = 1, -- (Opcionális) Meghatározhatja, hogy hány ponttal nő a jártasság (labortól függetlenül)
         ingredients = {
                          { name = 'steel', amount = 1, remove = true }, -- Csak ez szükséges
                          { name = 'hammer', amount = 1, remove = false }, -- remove = false azt jelzi, hogy ez a hozzávaló nem lesz elvéve

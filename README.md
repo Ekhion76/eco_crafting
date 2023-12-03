@@ -279,6 +279,7 @@ Config.recipes = {
     {   -- Fully optimized recipe
         name = 'pistol', 
         labor = 5, -- labor point (optional) 
+        increaseProficiency = 1000, -- (optional) You can determine by how many points the skill increases (regardless of labor use)
         ingredients = {
                          { name = 'steel', amount = 1, remove = true },
                          { name = 'hammer', amount = 1, remove = false }, -- remove = false are not taken away by the system

@@ -1,11 +1,14 @@
+3.03
+- added new recipe feature: 'increaseProficiency = 120' You can specify (optional) how many points to increase the skill regardless of lab use.
+It only affects the fxmanifest.lua + server.lua file
+
 3.02
 - Fix: Weapon serial number duplication (affected: libs/functions.lua/self.addItem(params, count))
 
 3.01
 - Fix: the required proficiency field did not appear on the graphical interface (change only view.js)
 
-3.0 (first ESX/QBCore/QBox version with e_core)
-
+3.0
 ATTENTION! It is necessary to install e_core before crafting!
 
 The Tebex download includes the previous version 2.4 (only QBCore) and the new version 3.0 (3.0 standalone + e_core) for now!
@@ -18,10 +21,8 @@ Introduction of e_core dependency due to framework/inventory independence ESX/QB
 - multiple recipes can be added to an item
 - several professions and specialties can be linked to one workplace
 - during the creation of the item, a side product can be created
-- support for any inventory can be built in (e_core)
-- ox_inventory support built in (e_core)
 
-2.4 (last only QBCore version without e_core)
+2.4
 - added client side export: The crafting interface can also be opened from an external script. See export_examples.md
 - added Config.workstationExpirationTime (in day). Is evaluated at script startup. Prevents portable workstations from remaining permanently installed.
 - added Config.workstationMaxCorrectionZ. The height of portable workstations is adjustable

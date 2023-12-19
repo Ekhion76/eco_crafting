@@ -1,3 +1,8 @@
+3.04
+- Bugfix: If hideHigherProficiencyItems was changed in the config/main.lua file, 
+the name of the item appeared next to the image in the item list. This caused the user interface to appear poorly.
+The change only affects html/js/view.js. (Corrected 'flex' to 'grid' in line 167)
+
 3.03
 - added new recipe feature: 'increaseProficiency = 120' You can specify (optional) how many points to increase the skill regardless of lab use.
 It only affects the fxmanifest.lua + server.lua file

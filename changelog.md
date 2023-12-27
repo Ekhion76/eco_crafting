@@ -1,3 +1,8 @@
+3.05
+- Bugfix: If labor = 0 was set in the recipe, then the 'attempt to compare number with nil' 
+error occurred and the production of the product was not completed. 
+The change only affects the server.lua file.
+
 3.04
 - Bugfix: If hideHigherProficiencyItems was changed in the config/main.lua file, 
 the name of the item appeared next to the image in the item list. This caused the user interface to appear poorly.

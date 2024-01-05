@@ -1,3 +1,7 @@
+3.06
+- Bugfix: Improved job and gang update event management. (onJobUpdate, onGangUpdate)
+  The change affects the client.lua file + it is necessary to update e_core.
+
 3.05
 - Bugfix: If labor = 0 was set in the recipe, then the 'attempt to compare number with nil' 
 error occurred and the production of the product was not completed. 

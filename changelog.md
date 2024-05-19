@@ -1,3 +1,15 @@
+3.07
+- Bugfix: FiveM produces high consumption if there is also a file of type .json in the file list, even if the file is not in use. 
+This can be seen on the server side in the case of the crafting script.
+Changed the file extension of eco_crafting\db\portable_ws.json to portable_ws.ini (it is enough to rewrite the extension, the content of the file remains unchanged)
+- Listing of missing ingredients and discarded recipes in the server console (ON: Config.debugLevel = 1 -- 0-4)
+
+The changes affect the following files:
+  - fxmanifest.lua
+  - eco_crafting\db\portable_ws.json to portable_ws.ini
+  - eco_crafting\libs\portable.lua
+  - eco_crafting\libs\configchecker.lua
+
 3.06
 - Bugfix: Improved job and gang update event management. (onJobUpdate, onGangUpdate)
   The change affects the client.lua file + it is necessary to update e_core.

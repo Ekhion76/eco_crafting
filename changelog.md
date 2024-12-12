@@ -14,6 +14,7 @@ eco_crafting/client/workplace.lua: Adds options and parameters conforming to the
 e_core/bridge/global/client.lua: Adds ox exports.
 
 e_core/bridge/esx/client.lua: Removal of qtarget-related functions
+
 e_core/bridge/qb/client.lua: Removal of qb-target-related functions
 
 3.07

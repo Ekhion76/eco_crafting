@@ -1,3 +1,8 @@
+3.09
+- When starting crafting, the function named maxProduct attempts to calculate how many items can be crafted with the available materials. This is when the 'amount' value might be missing.
+- Sends a message and a console log about the error in eco_crafting/libs/functions.lua:282 ... nil value (field 'amount'), making it easier to identify the issue.
+Config.debugLevel = 4 provides additional details. (functions.lua -> maxProduct:recipe)
+
 3.08
 - Transition to exclusive support for ox_target. If you use a target system, ox_target must be installed.
   
@@ -14,7 +19,6 @@ eco_crafting/client/workplace.lua: Adds options and parameters conforming to the
 e_core/bridge/global/client.lua: Adds ox exports.
 
 e_core/bridge/esx/client.lua: Removal of qtarget-related functions
-
 e_core/bridge/qb/client.lua: Removal of qb-target-related functions
 
 3.07

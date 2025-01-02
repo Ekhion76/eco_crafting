@@ -1,3 +1,7 @@
+3.10
+-- The trigger for the "Warning: attempted to remove a zone that does not exists" has been fixed.
+The change only affects the client/workplace.lua file.
+
 3.09
 - When starting crafting, the function named maxProduct attempts to calculate how many items can be crafted with the available materials. This is when the 'amount' value might be missing.
 - Sends a message and a console log about the error in eco_crafting/libs/functions.lua:282 ... nil value (field 'amount'), making it easier to identify the issue.

@@ -1,5 +1,5 @@
 3.11
--- Fixed an issue where, when using the ESX framework, placing a portable crafting table did not remove the 
+- Fixed an issue where, when using the ESX framework, placing a portable crafting table did not remove the 
 corresponding item from the player's inventory.
 
 Affected files:
@@ -7,7 +7,7 @@ Affected files:
 - eco_crafting/libs/portable.lua (workstationAddRequest, addPortableWorkstation, removePortableWorkstation functions)
 
 3.10
--- The trigger for the "Warning: attempted to remove a zone that does not exists" has been fixed.
+- The trigger for the "Warning: attempted to remove a zone that does not exists" has been fixed.
 The change only affects the client/workplace.lua file.
 
 3.09
